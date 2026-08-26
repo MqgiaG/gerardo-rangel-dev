@@ -1,8 +1,40 @@
+import { useRef, useState } from 'react'
 import './Header.css'
 
 function Header() {
+  const audioRef = useRef(null)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+
+  const toggleMusic = async () => {
+    const audio = audioRef.current
+
+    if (!audio) return
+
+    audio.volume = 0.18
+
+    if (isMusicPlaying) {
+      audio.pause()
+      setIsMusicPlaying(false)
+      return
+    }
+
+    try {
+      await audio.play()
+      setIsMusicPlaying(true)
+    } catch (error) {
+      console.error('No se pudo reproducir la música:', error)
+    }
+  }
+
   return (
     <header className="sidebar">
+      <audio
+        ref={audioRef}
+        src="/audio/mqgia-theme.mp3"
+        loop
+        preload="auto"
+      />
+
       <div className="sidebar__top">
         <a
           href="#home"
@@ -21,10 +53,7 @@ function Header() {
           href="#home"
           className="sidebar__link sidebar__link--active"
         >
-          <span
-            className="sidebar__icon"
-            aria-hidden="true"
-          >
+          <span className="sidebar__icon" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -47,10 +76,7 @@ function Header() {
           href="#about"
           className="sidebar__link"
         >
-          <span
-            className="sidebar__icon"
-            aria-hidden="true"
-          >
+          <span className="sidebar__icon" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -60,7 +86,6 @@ function Header() {
               strokeLinejoin="round"
             >
               <circle cx="12" cy="8" r="3.5" />
-
               <path d="M5.5 19c1.8-3 4.1-4.5 6.5-4.5s4.7 1.5 6.5 4.5" />
             </svg>
           </span>
@@ -74,10 +99,7 @@ function Header() {
           href="#skills"
           className="sidebar__link"
         >
-          <span
-            className="sidebar__icon"
-            aria-hidden="true"
-          >
+          <span className="sidebar__icon" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -101,10 +123,7 @@ function Header() {
           href="#projects"
           className="sidebar__link"
         >
-          <span
-            className="sidebar__icon"
-            aria-hidden="true"
-          >
+          <span className="sidebar__icon" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -120,7 +139,6 @@ function Header() {
                 height="14"
                 rx="2.5"
               />
-
               <path d="M8 9h8" />
               <path d="M8 13h5" />
             </svg>
@@ -135,10 +153,7 @@ function Header() {
           href="#contact"
           className="sidebar__link"
         >
-          <span
-            className="sidebar__icon"
-            aria-hidden="true"
-          >
+          <span className="sidebar__icon" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -148,7 +163,6 @@ function Header() {
               strokeLinejoin="round"
             >
               <path d="M4 7.5 12 13l8-5.5" />
-
               <rect
                 x="4"
                 y="6"
@@ -166,7 +180,39 @@ function Header() {
       </nav>
 
       <div className="sidebar__socials">
-        {/* GitHub */}
+        <button
+          type="button"
+          className={`sidebar__music ${
+            isMusicPlaying
+              ? 'sidebar__music--playing'
+              : ''
+          }`}
+          onClick={toggleMusic}
+          aria-label={
+            isMusicPlaying
+              ? 'Pausar música'
+              : 'Reproducir música'
+          }
+          title={
+            isMusicPlaying
+              ? 'Pausar música'
+              : 'Reproducir música'
+          }
+        >
+          <span className="sidebar__music-note">
+            {isMusicPlaying ? '♫' : '♪'}
+          </span>
+
+          <span
+            className="sidebar__music-wave"
+            aria-hidden="true"
+          >
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+        </button>
+
         <a
           href="https://github.com/MqgiaG"
           target="_blank"
@@ -183,7 +229,6 @@ function Header() {
           </svg>
         </a>
 
-        {/* LinkedIn */}
         <a
           href="https://www.linkedin.com/"
           target="_blank"
@@ -200,7 +245,6 @@ function Header() {
           </svg>
         </a>
 
-        {/* WhatsApp */}
         <a
           href="https://wa.me/524281146829"
           target="_blank"
