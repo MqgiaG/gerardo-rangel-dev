@@ -1,38 +1,987 @@
+/* =========================
+   SKILLS
+========================= */
+
 .skills {
-  background: var(--color-surface);
+  position: relative;
+
+  margin-left: 96px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(255, 45, 149, 0.055),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 8% 72%,
+      rgba(255, 45, 149, 0.035),
+      transparent 26%
+    ),
+    #09090a;
+
   border-top: 1px solid var(--color-border);
 }
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.skills__background {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.skills__background-star {
+  position: absolute;
+
+  font-family: var(--font-display);
+
+  pointer-events: none;
+
+  animation:
+    skillsBackgroundFloat
+    4s
+    ease-in-out
+    infinite;
+}
+
+.skills__background-star--one {
+  top: 8%;
+  right: 8%;
+
+  color: rgba(255, 45, 149, 0.28);
+
+  font-size: 30px;
+}
+
+.skills__background-star--two {
+  top: 47%;
+  left: 4%;
+
+  color: rgba(255, 255, 255, 0.07);
+
+  font-size: 20px;
+
+  animation-delay: 900ms;
+}
+
+.skills__background-code {
+  position: absolute;
+
+  top: 3%;
+  right: 22%;
+
+  color: rgba(255, 255, 255, 0.018);
+
+  font-family: var(--font-heading);
+  font-size: 145px;
+  font-weight: 700;
+
+  transform: rotate(-5deg);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.skills__container {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1380px;
+
+  margin: 0 auto;
+
+  padding:
+    110px
+    70px
+    120px;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.skills__heading {
+  max-width: 900px;
+
+  margin-bottom: 75px;
+}
+
+.skills__eyebrow {
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 24px;
+
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.skills__eyebrow-number {
+  min-width: 38px;
+  min-height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  color: #080808;
+  background: var(--color-pink);
+
+  border: 2px solid #080808;
+
+  border-radius:
+    10px
+    8px
+    11px
+    7px;
+
+  box-shadow:
+    3px 3px 0
+    rgba(255, 255, 255, 0.13);
+
+  transform: rotate(3deg);
+}
+
+.skills__eyebrow-text {
+  color: #85858b;
+}
+
+.skills__title {
+  margin: 0;
+
+  color: var(--color-white);
+
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 5.5vw, 78px);
+  font-weight: 600;
+  line-height: 0.98;
+
+  letter-spacing: -0.055em;
+}
+
+.skills__title span {
+  display: block;
+
+  width: fit-content;
+
+  margin-top: 8px;
+
+  color: var(--color-pink);
+
+  font-family: var(--font-display);
+  font-weight: 700;
+
+  transform: rotate(-1deg);
+}
+
+.skills__description {
+  max-width: 640px;
+
+  margin: 28px 0 0;
+
+  color: #85858b;
+
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* =========================
+   GROUPS
+========================= */
+
+.skills__groups {
+  display: flex;
+  flex-direction: column;
+
+  gap: 62px;
+}
+
+.skills__group {
+  position: relative;
+}
+
+/* =========================
+   GROUP HEADING
+========================= */
+
+.skills__group-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+
+  margin-bottom: 25px;
+}
+
+.skills__group-info {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  flex-shrink: 0;
+}
+
+.skills__group-number {
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--color-pink);
+
+  background:
+    rgba(255, 45, 149, 0.06);
+
+  border:
+    1px solid
+    rgba(255, 45, 149, 0.25);
+
+  border-radius:
+    11px
+    8px
+    12px
+    9px;
+
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+
+  box-shadow:
+    2px 2px 0
+    rgba(255, 45, 149, 0.08);
+
+  transform: rotate(-3deg);
+}
+
+.skills__group-copy {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.skills__group-title {
+  margin: 0;
+
+  color: var(--color-white);
+
+  font-family: var(--font-heading);
+  font-size: 23px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: -0.035em;
+}
+
+.skills__group-description {
+  margin: 0;
+
+  color: #5e5e64;
+
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.skills__group-line {
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #29292e,
+      rgba(41, 41, 46, 0.45),
+      transparent
+    );
+}
+
+/* =========================
+   GRID
+========================= */
 
 .skills__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--color-border);
-  border-left: 1px solid var(--color-border);
+
+  grid-template-columns:
+    repeat(6, minmax(0, 1fr));
+
+  gap: 17px;
 }
 
-.skills__item {
-  min-height: 130px;
-  padding: 30px;
+/* =========================
+   STICKER
+========================= */
+
+.skills__sticker {
+  position: relative;
+
+  min-height: 150px;
+
   display: flex;
-  align-items: flex-end;
-  border-right: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  transition: all var(--transition);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  padding: 20px 12px 17px;
+
+  overflow: visible;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121214,
+      #0c0c0e
+    );
+
+  border:
+    1.5px solid
+    #303036;
+
+  border-radius:
+    19px
+    14px
+    21px
+    15px;
+
+  box-shadow:
+    5px 5px 0
+    rgba(255, 255, 255, 0.025);
+
+  cursor: default;
+
+  transform: rotate(-1deg);
+
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+
+  animation:
+    skillStickerFloat
+    3.6s
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    calc(
+      var(--skill-index) * 180ms
+    );
 }
 
-.skills__item:hover {
-  background: var(--color-surface-light);
-  color: var(--color-text);
+/* Different angles */
+
+.skills__sticker:nth-child(2n) {
+  transform: rotate(1deg);
 }
 
-.skills__item span {
-  font-size: 1.2rem;
+.skills__sticker:nth-child(3n) {
+  transform: rotate(-1.5deg);
+}
+
+.skills__sticker:nth-child(4n) {
+  transform: rotate(1.5deg);
+}
+
+/* Glow behind sticker */
+
+.skills__sticker::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 18px;
+
+  z-index: -1;
+
+  border-radius: inherit;
+
+  background:
+    rgba(255, 45, 149, 0.18);
+
+  filter: blur(25px);
+
+  opacity: 0;
+
+  transform: scale(0.85);
+
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+/* tiny hand drawn line */
+
+.skills__sticker::after {
+  content: '';
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 9px;
+
+  width: 30px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-pink);
+
+  opacity: 0.25;
+
+  transform:
+    translateX(-50%)
+    rotate(-2deg);
+
+  transition:
+    width 220ms ease,
+    opacity 220ms ease;
+}
+
+/* =========================
+   PIN
+========================= */
+
+.skills__sticker-pin {
+  position: absolute;
+
+  top: -4px;
+  right: 15px;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-pink);
+
+  box-shadow:
+    0 0 9px
+    rgba(255, 45, 149, 0.7);
+
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.skills__icon {
+  position: relative;
+
+  width: 67px;
+  height: 67px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1.5px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius:
+    19px
+    14px
+    21px
+    15px;
+
+  box-shadow:
+    4px 4px 0
+    rgba(255, 45, 149, 0.1);
+
+  transform: rotate(-4deg);
+
+  transition:
+    transform 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.skills__icon img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  filter:
+    saturate(0.95)
+    brightness(0.95);
+
+  transition:
+    transform 220ms ease,
+    filter 220ms ease;
+}
+
+/* =========================
+   NAME
+========================= */
+
+.skills__name {
+  position: relative;
+
+  margin: 0;
+
+  color: #d0d0d4;
+
+  font-family: var(--font-heading);
+  font-size: 14px;
   font-weight: 600;
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  letter-spacing: -0.025em;
+
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
 }
 
-@media (max-width: 700px) {
+/* =========================
+   SPARK
+========================= */
+
+.skills__spark {
+  position: absolute;
+
+  left: 12px;
+  top: 12px;
+
+  color:
+    rgba(255, 255, 255, 0.08);
+
+  font-size: 10px;
+
+  transform: rotate(15deg);
+
+  opacity: 0;
+
+  transition:
+    color 220ms ease,
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+/* =========================
+   HOVER
+========================= */
+
+.skills__sticker:hover {
+  background:
+    linear-gradient(
+      145deg,
+      #161317,
+      #0e0d10
+    );
+
+  border-color:
+    rgba(255, 45, 149, 0.7);
+
+  box-shadow:
+    6px 6px 0
+    rgba(255, 45, 149, 0.16),
+    0 0 22px
+    rgba(255, 45, 149, 0.08);
+
+  transform:
+    translateY(-7px)
+    rotate(-2deg)
+    scale(1.045);
+
+  animation-play-state: paused;
+}
+
+.skills__sticker:hover::before {
+  opacity: 0.6;
+
+  transform: scale(1);
+}
+
+.skills__sticker:hover::after {
+  width: 55px;
+
+  opacity: 0.9;
+}
+
+.skills__sticker:hover
+.skills__sticker-pin {
+  transform: scale(1.25);
+
+  box-shadow:
+    0 0 13px
+    rgba(255, 45, 149, 0.9);
+}
+
+.skills__sticker:hover
+.skills__icon {
+  background:
+    rgba(255, 45, 149, 0.07);
+
+  border-color:
+    rgba(255, 45, 149, 0.28);
+
+  box-shadow:
+    5px 5px 0
+    rgba(255, 45, 149, 0.15);
+
+  transform:
+    rotate(4deg)
+    scale(1.08);
+}
+
+.skills__sticker:hover
+.skills__icon img {
+  filter:
+    saturate(1.15)
+    brightness(1.05);
+
+  transform:
+    scale(1.08);
+}
+
+.skills__sticker:hover
+.skills__name {
+  color: var(--color-white);
+
+  transform: translateY(-1px);
+}
+
+.skills__sticker:hover
+.skills__spark {
+  color: var(--color-pink);
+
+  opacity: 1;
+
+  transform:
+    rotate(-10deg)
+    scale(1.2);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.skills__footer {
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 65px;
+  margin-left: auto;
+
+  padding:
+    13px
+    17px;
+
+  color: #77777d;
+
+  background:
+    rgba(255, 45, 149, 0.035);
+
+  border:
+    1px solid
+    rgba(255, 45, 149, 0.13);
+
+  border-radius:
+    14px
+    10px
+    15px
+    11px;
+
+  transform: rotate(-1deg);
+}
+
+.skills__footer-arrow {
+  color: var(--color-pink);
+
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+
+  animation:
+    skillsFooterArrow
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+.skills__footer-text {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.skills__footer-star {
+  color:
+    rgba(255, 45, 149, 0.55);
+
+  font-size: 13px;
+
+  animation:
+    skillsStarRotate
+    5s
+    linear
+    infinite;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes skillStickerFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -4px;
+  }
+}
+
+@keyframes skillsBackgroundFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@keyframes skillsFooterArrow {
+  0%,
+  100% {
+    transform:
+      translateX(0)
+      rotate(0deg);
+  }
+
+  50% {
+    transform:
+      translateX(5px)
+      rotate(-5deg);
+  }
+}
+
+@keyframes skillsStarRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   MEDIUM DESKTOP
+========================= */
+
+@media (max-width: 1200px) {
   .skills__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .skills__container {
+    padding:
+      100px
+      40px
+      110px;
+  }
+
+  .skills__heading {
+    margin-bottom: 60px;
+  }
+
+  .skills__groups {
+    gap: 55px;
+  }
+
+  .skills__grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .skills {
+    margin-left: 0;
+
+    margin-bottom: 70px;
+  }
+
+  .skills__container {
+    padding:
+      85px
+      24px
+      105px;
+  }
+
+  .skills__title {
+    font-size:
+      clamp(
+        44px,
+        12vw,
+        65px
+      );
+  }
+
+  .skills__description {
+    font-size: 15px;
+  }
+
+  .skills__group-heading {
+    align-items: flex-start;
+  }
+
+  .skills__group-line {
+    margin-top: 17px;
+  }
+
+  .skills__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+  }
+
+  .skills__sticker {
+    min-height: 145px;
+  }
+
+  .skills__icon {
+    width: 61px;
+    height: 61px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .skills__container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .skills__title {
+    font-size: 45px;
+  }
+
+  .skills__groups {
+    gap: 52px;
+  }
+
+  .skills__grid {
+    gap: 12px;
+  }
+
+  .skills__sticker {
+    min-height: 135px;
+
+    padding:
+      17px
+      8px
+      14px;
+  }
+
+  .skills__icon {
+    width: 55px;
+    height: 55px;
+
+    padding: 10px;
+  }
+
+  .skills__name {
+    font-size: 12px;
+  }
+
+  .skills__group-title {
+    font-size: 20px;
+  }
+
+  .skills__group-description {
+    display: none;
+  }
+
+  .skills__footer {
+    margin-right: auto;
+    margin-left: 0;
+  }
+}
+
+/* =========================
+   REDUCE MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .skills__sticker,
+  .skills__sticker-pin,
+  .skills__icon,
+  .skills__icon img,
+  .skills__name,
+  .skills__spark {
+    transition: none;
+  }
+
+  .skills__sticker,
+  .skills__background-star,
+  .skills__footer-arrow,
+  .skills__footer-star {
+    animation: none;
   }
 }
