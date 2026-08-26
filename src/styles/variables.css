@@ -1,0 +1,47 @@
+:root {
+
+  /* =========================
+     COLORS
+  ========================= */
+
+  --color-bg: #080808;
+  --color-bg-soft: #0e0e0f;
+  --color-surface: #111113;
+
+  --color-white: #f5f5f2;
+  --color-text: #b4b4b8;
+  --color-muted: #6f6f75;
+
+  --color-pink: #ff2d95;
+  --color-lilac: #b78cff;
+  --color-border: #242428;
+
+  /* =========================
+     TYPOGRAPHY
+  ========================= */
+
+  --font-display: "Kalam", cursive;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+  --container: 1200px;
+
+  /* =========================
+     BORDER RADIUS
+  ========================= */
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  /* =========================
+     TRANSITIONS
+  ========================= */
+
+  --transition: 300ms ease;
+
+}
