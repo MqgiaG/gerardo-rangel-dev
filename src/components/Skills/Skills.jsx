@@ -2,7 +2,7 @@ import './Skills.css'
 
 const skillGroups = [
   {
-    number: '01',
+    layout: 'frontend',
     title: 'Frontend',
     description: 'Interfaces, estilos y experiencias.',
     skills: [
@@ -33,7 +33,7 @@ const skillGroups = [
     ],
   },
   {
-    number: '02',
+    layout: 'backend',
     title: 'Backend & Datos',
     description: 'Lógica, APIs y persistencia.',
     skills: [
@@ -44,6 +44,7 @@ const skillGroups = [
       {
         name: 'Express',
         icon: '/icons/skills/express.svg',
+        lightIcon: true,
       },
       {
         name: 'MongoDB',
@@ -56,7 +57,7 @@ const skillGroups = [
     ],
   },
   {
-    number: '03',
+    layout: 'tools',
     title: 'Herramientas',
     description: 'Mi entorno para construir y trabajar.',
     skills: [
@@ -67,6 +68,7 @@ const skillGroups = [
       {
         name: 'GitHub',
         icon: '/icons/skills/github.svg',
+        lightIcon: true,
       },
       {
         name: 'npm',
@@ -79,7 +81,7 @@ const skillGroups = [
     ],
   },
   {
-    number: '04',
+    layout: 'design',
     title: 'Diseño',
     description: 'Diseño y prototipado de interfaces.',
     skills: [
@@ -94,7 +96,10 @@ const skillGroups = [
 function Skills() {
   return (
     <section className="skills" id="skills">
-      <div className="skills__background" aria-hidden="true">
+      <div
+        className="skills__background"
+        aria-hidden="true"
+      >
         <span className="skills__background-star skills__background-star--one">
           ✦
         </span>
@@ -135,13 +140,16 @@ function Skills() {
         <div className="skills__groups">
           {skillGroups.map((group) => (
             <section
-              className="skills__group"
+              className={`skills__group skills__group--${group.layout}`}
               key={group.title}
             >
               <div className="skills__group-heading">
                 <div className="skills__group-info">
-                  <span className="skills__group-number">
-                    {group.number}
+                  <span
+                    className="skills__group-marker"
+                    aria-hidden="true"
+                  >
+                    ➟
                   </span>
 
                   <div className="skills__group-copy">
@@ -170,10 +178,18 @@ function Skills() {
                       '--skill-index': index,
                     }}
                   >
-                    <div className="skills__sticker-pin"></div>
+                    <span
+                      className="skills__sticker-pin"
+                      aria-hidden="true"
+                    ></span>
 
                     <div className="skills__icon">
                       <img
+                        className={
+                          skill.lightIcon
+                            ? 'skills__icon-image skills__icon-image--light'
+                            : 'skills__icon-image'
+                        }
                         src={skill.icon}
                         alt=""
                         aria-hidden="true"
@@ -199,21 +215,21 @@ function Skills() {
 
         <div className="skills__footer">
           <span
-            className="skills__footer-arrow"
+            className="skills__footer-doodle"
             aria-hidden="true"
           >
-            ↳
+            ✦
           </span>
 
           <span className="skills__footer-text">
-            Y el stack sigue creciendo.
+            Aprender también es parte del código.
           </span>
 
           <span
             className="skills__footer-star"
             aria-hidden="true"
           >
-            ✦
+            ★
           </span>
         </div>
       </div>

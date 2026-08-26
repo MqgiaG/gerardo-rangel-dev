@@ -1,9 +1,158 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './Header.css'
 
 function Header() {
   const audioRef = useRef(null)
+
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
+
+  /* =========================
+     ACTIVE SECTION ON SCROLL
+  ========================= */
+
+  useEffect(() => {
+    const sectionIds = [
+      'home',
+      'about',
+      'skills',
+      'projects',
+      'contact',
+    ]
+
+    const handleScroll = () => {
+      const scrollTop =
+        window.scrollY ||
+        document.documentElement.scrollTop
+
+      const windowHeight = window.innerHeight
+      const documentHeight =
+        document.documentElement.scrollHeight
+
+      /* CONTACTO:
+         si estamos prácticamente al final de la página,
+         contacto siempre será la sección activa */
+      const isAtBottom =
+        scrollTop + windowHeight >=
+        documentHeight - 10
+
+      if (isAtBottom) {
+        setActiveSection('contact')
+        return
+      }
+
+      /* Punto de referencia dentro de la pantalla */
+      const detectionPoint =
+        windowHeight * 0.32
+
+      let currentSection = 'home'
+
+      sectionIds.forEach((sectionId) => {
+        const section =
+          document.getElementById(sectionId)
+
+        if (!section) return
+
+        const rect =
+          section.getBoundingClientRect()
+
+        if (rect.top <= detectionPoint) {
+          currentSection = sectionId
+        }
+      })
+
+      setActiveSection(currentSection)
+    }
+
+    handleScroll()
+
+    window.addEventListener(
+      'scroll',
+      handleScroll,
+      {
+        passive: true,
+      },
+    )
+
+    window.addEventListener(
+      'resize',
+      handleScroll,
+    )
+
+    return () => {
+      window.removeEventListener(
+        'scroll',
+        handleScroll,
+      )
+
+      window.removeEventListener(
+        'resize',
+        handleScroll,
+      )
+    }
+  }, [])
+
+  /* =========================
+     INSTANT NAVIGATION
+  ========================= */
+
+  const goToSection = (
+    event,
+    sectionId,
+  ) => {
+    event.preventDefault()
+
+    const section =
+      document.getElementById(sectionId)
+
+    if (!section) return
+
+    /*
+      Guardamos el scroll-behavior actual.
+      Esto evita que un "scroll-behavior: smooth"
+      global haga que pase por todas las secciones.
+    */
+
+    const html =
+      document.documentElement
+
+    const previousScrollBehavior =
+      html.style.scrollBehavior
+
+    html.style.scrollBehavior = 'auto'
+
+    const sectionTop =
+      section.getBoundingClientRect().top +
+      window.scrollY
+
+    window.scrollTo({
+      top: sectionTop,
+      left: 0,
+      behavior: 'auto',
+    })
+
+    setActiveSection(sectionId)
+
+    /*
+      Actualizamos el #hash sin provocar
+      otro movimiento del navegador.
+    */
+
+    window.history.replaceState(
+      null,
+      '',
+      `#${sectionId}`,
+    )
+
+    requestAnimationFrame(() => {
+      html.style.scrollBehavior =
+        previousScrollBehavior
+    })
+  }
+
+  /* =========================
+     MUSIC
+  ========================= */
 
   const toggleMusic = async () => {
     const audio = audioRef.current
@@ -15,14 +164,19 @@ function Header() {
     if (isMusicPlaying) {
       audio.pause()
       setIsMusicPlaying(false)
+
       return
     }
 
     try {
       await audio.play()
+
       setIsMusicPlaying(true)
     } catch (error) {
-      console.error('No se pudo reproducir la música:', error)
+      console.error(
+        'No se pudo reproducir la música:',
+        error,
+      )
     }
   }
 
@@ -35,25 +189,54 @@ function Header() {
         preload="auto"
       />
 
+      {/* =========================
+          LOGO
+      ========================= */}
+
       <div className="sidebar__top">
         <a
           href="#home"
           className="sidebar__logo"
           aria-label="Inicio"
+          onClick={(event) =>
+            goToSection(
+              event,
+              'home',
+            )
+          }
         >
           Mqgia
         </a>
       </div>
 
+      {/* =========================
+          NAVIGATION
+      ========================= */}
+
       <nav
         className="sidebar__nav"
         aria-label="Navegación principal"
       >
+        {/* INICIO */}
+
         <a
           href="#home"
-          className="sidebar__link sidebar__link--active"
+          className={`sidebar__link ${
+            activeSection === 'home'
+              ? 'sidebar__link--active'
+              : ''
+          }`}
+          onClick={(event) =>
+            goToSection(
+              event,
+              'home',
+            )
+          }
         >
-          <span className="sidebar__icon" aria-hidden="true">
+          <span
+            className="sidebar__icon"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -72,11 +255,26 @@ function Header() {
           </span>
         </a>
 
+        {/* SOBRE MÍ */}
+
         <a
           href="#about"
-          className="sidebar__link"
+          className={`sidebar__link ${
+            activeSection === 'about'
+              ? 'sidebar__link--active'
+              : ''
+          }`}
+          onClick={(event) =>
+            goToSection(
+              event,
+              'about',
+            )
+          }
         >
-          <span className="sidebar__icon" aria-hidden="true">
+          <span
+            className="sidebar__icon"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -85,7 +283,12 @@ function Header() {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <circle cx="12" cy="8" r="3.5" />
+              <circle
+                cx="12"
+                cy="8"
+                r="3.5"
+              />
+
               <path d="M5.5 19c1.8-3 4.1-4.5 6.5-4.5s4.7 1.5 6.5 4.5" />
             </svg>
           </span>
@@ -95,11 +298,26 @@ function Header() {
           </span>
         </a>
 
+        {/* TECNOLOGÍAS */}
+
         <a
           href="#skills"
-          className="sidebar__link"
+          className={`sidebar__link ${
+            activeSection === 'skills'
+              ? 'sidebar__link--active'
+              : ''
+          }`}
+          onClick={(event) =>
+            goToSection(
+              event,
+              'skills',
+            )
+          }
         >
-          <span className="sidebar__icon" aria-hidden="true">
+          <span
+            className="sidebar__icon"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -119,11 +337,26 @@ function Header() {
           </span>
         </a>
 
+        {/* PROYECTOS */}
+
         <a
           href="#projects"
-          className="sidebar__link"
+          className={`sidebar__link ${
+            activeSection === 'projects'
+              ? 'sidebar__link--active'
+              : ''
+          }`}
+          onClick={(event) =>
+            goToSection(
+              event,
+              'projects',
+            )
+          }
         >
-          <span className="sidebar__icon" aria-hidden="true">
+          <span
+            className="sidebar__icon"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -139,6 +372,7 @@ function Header() {
                 height="14"
                 rx="2.5"
               />
+
               <path d="M8 9h8" />
               <path d="M8 13h5" />
             </svg>
@@ -149,11 +383,26 @@ function Header() {
           </span>
         </a>
 
+        {/* CONTACTO */}
+
         <a
           href="#contact"
-          className="sidebar__link"
+          className={`sidebar__link ${
+            activeSection === 'contact'
+              ? 'sidebar__link--active'
+              : ''
+          }`}
+          onClick={(event) =>
+            goToSection(
+              event,
+              'contact',
+            )
+          }
         >
-          <span className="sidebar__icon" aria-hidden="true">
+          <span
+            className="sidebar__icon"
+            aria-hidden="true"
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -163,6 +412,7 @@ function Header() {
               strokeLinejoin="round"
             >
               <path d="M4 7.5 12 13l8-5.5" />
+
               <rect
                 x="4"
                 y="6"
@@ -179,7 +429,13 @@ function Header() {
         </a>
       </nav>
 
+      {/* =========================
+          SOCIALS
+      ========================= */}
+
       <div className="sidebar__socials">
+        {/* MUSIC */}
+
         <button
           type="button"
           className={`sidebar__music ${
@@ -200,7 +456,9 @@ function Header() {
           }
         >
           <span className="sidebar__music-note">
-            {isMusicPlaying ? '♫' : '♪'}
+            {isMusicPlaying
+              ? '♫'
+              : '♪'}
           </span>
 
           <span
@@ -212,6 +470,8 @@ function Header() {
             <i></i>
           </span>
         </button>
+
+        {/* GITHUB */}
 
         <a
           href="https://github.com/MqgiaG"
@@ -229,6 +489,8 @@ function Header() {
           </svg>
         </a>
 
+        {/* LINKEDIN */}
+
         <a
           href="https://www.linkedin.com/"
           target="_blank"
@@ -244,6 +506,8 @@ function Header() {
             <path d="M6.94 8.5a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44ZM5.5 9.88h2.88V19H5.5V9.88Zm4.68 0h2.76v1.24h.04c.38-.73 1.32-1.5 2.72-1.5 2.91 0 3.45 1.96 3.45 4.5V19h-2.88v-4.28c0-1.02-.02-2.33-1.39-2.33-1.4 0-1.61 1.12-1.61 2.26V19h-2.88V9.88Z" />
           </svg>
         </a>
+
+        {/* WHATSAPP */}
 
         <a
           href="https://wa.me/524281146829"
