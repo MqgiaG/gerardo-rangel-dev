@@ -36,6 +36,14 @@ function Contact() {
     <section className="contact section" id="contact">
       <div className="contact__container">
         <header className="contact__header">
+          <img
+            className="contact__header-doodle"
+            src="/images/contact/contact-doodle.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          />
+
           <div className="contact__section-label">
             <span className="contact__section-number">
               04
@@ -343,13 +351,6 @@ function Contact() {
                     gerardoanrg@gmail.com
                   </strong>
                 </span>
-
-                <span
-                  className="contact__email-arrow"
-                  aria-hidden="true"
-                >
-                  →
-                </span>
               </a>
             </div>
 
@@ -374,13 +375,6 @@ function Contact() {
                 <span>
                   WhatsApp
                 </span>
-
-                <span
-                  className="contact__action-arrow"
-                  aria-hidden="true"
-                >
-                  →
-                </span>
               </a>
 
               <a
@@ -402,13 +396,6 @@ function Contact() {
                 <span>
                   GitHub
                 </span>
-
-                <span
-                  className="contact__action-arrow"
-                  aria-hidden="true"
-                >
-                  →
-                </span>
               </a>
 
               <a
@@ -424,13 +411,6 @@ function Contact() {
 
                 <span>
                   Correo
-                </span>
-
-                <span
-                  className="contact__action-arrow"
-                  aria-hidden="true"
-                >
-                  →
                 </span>
               </a>
             </div>

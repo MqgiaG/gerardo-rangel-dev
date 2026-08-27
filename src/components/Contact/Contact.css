@@ -51,9 +51,58 @@
 ========================= */
 
 .contact__header {
+  position: relative;
+
   max-width: 900px;
 
   margin-bottom: 70px;
+
+  isolation: isolate;
+}
+
+.contact__header > :not(.contact__header-doodle) {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================
+   HEADER BACKGROUND DOODLE
+========================= */
+
+.contact__header-doodle {
+  position: absolute;
+  z-index: 0;
+
+  top: 50%;
+  right: -330px;
+
+  width:
+    clamp(
+      320px,
+      29vw,
+      410px
+    );
+
+  max-width: none;
+
+  pointer-events: none;
+  user-select: none;
+
+  opacity: 0.055;
+
+  mix-blend-mode: screen;
+
+  filter:
+    saturate(0.82)
+    contrast(1.12)
+    brightness(0.82);
+
+  transform:
+    translateY(-52%)
+    rotate(6deg);
+
+  transform-origin:
+    center;
 }
 
 /* =========================
@@ -1072,8 +1121,7 @@
 
   grid-template-columns:
     62px
-    minmax(0, 1fr)
-    auto;
+    minmax(0, 1fr);
 
   align-items: center;
 
@@ -1256,43 +1304,6 @@
     rgba(0, 0, 0, 0.75);
 }
 
-.contact__email-arrow {
-  display:
-    inline-block;
-
-  padding-right: 6px;
-
-  color:
-    var(--color-pink);
-
-  font-family:
-    var(--font-heading);
-
-  font-size: 31px;
-  font-weight: 900;
-
-  text-shadow:
-    2px
-    2px
-    0
-    #080808;
-
-  transition:
-    transform 180ms ease,
-    color 180ms ease;
-}
-
-.contact__email:hover
-.contact__email-arrow {
-  color:
-    var(--color-lilac);
-
-  transform:
-    translateX(8px)
-    rotate(-8deg)
-    scale(1.1);
-}
-
 /* =========================
    ACTIONS
 ========================= */
@@ -1366,22 +1377,82 @@
     box-shadow 170ms ease;
 }
 
+/* =========================
+   SIN CÍRCULO / MANCHA
+========================= */
+
 .contact__action::before {
-  content: "";
+  display: none;
+}
+
+/* =========================
+   GRAPITA SOBRE TARJETAS
+========================= */
+
+.contact__action::after {
+  content: "𑣲";
 
   position: absolute;
+  z-index: 10;
 
-  top: -5px;
-  right: 10px;
+  top: -13px;
+  left: -5px;
 
-  width: 14px;
-  height: 5px;
+  display: block;
 
-  background:
-    rgba(255, 255, 255, 0.15);
+  pointer-events: none;
 
-  border-radius:
-    50%;
+  color:
+    var(--color-pink);
+
+  font-family:
+    "Apple Symbols",
+    "Segoe UI Symbol",
+    sans-serif;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-shadow:
+    1px
+    1px
+    0
+    #080808;
+
+  transform:
+    rotate(-8deg);
+
+  transform-origin:
+    center;
+}
+
+/* WHATSAPP — ROSA */
+
+.contact__action--whatsapp::after {
+  color:
+    #ff4fa3;
+
+  transform:
+    rotate(-9deg);
+}
+
+/* GITHUB — LILA */
+
+.contact__action--github::after {
+  color:
+    #b78cff;
+
+  transform:
+    rotate(7deg);
+}
+
+/* CORREO — MORADO */
+
+.contact__action--mail::after {
+  color:
+    #d06cff;
 
   transform:
     rotate(-6deg);
@@ -1420,6 +1491,10 @@
     rotate(0deg)
     scale(1.05);
 }
+
+/* =========================
+   ACTION ICON
+========================= */
 
 .contact__action-icon {
   width: 31px;
@@ -1477,6 +1552,10 @@
     brightness(0);
 }
 
+/* =========================
+   WHATSAPP ICON
+========================= */
+
 .contact__action-icon--whatsapp {
   background:
     #57e389;
@@ -1493,41 +1572,24 @@
     -0.04em;
 }
 
+/* =========================
+   MAIL ICON
+========================= */
+
 .contact__action-icon--mail {
   font-size:
     15px;
 }
+
+/* =========================
+   ACTION HOVER
+========================= */
 
 .contact__action:hover
 .contact__action-icon {
   transform:
     rotate(8deg)
     scale(1.1);
-}
-
-.contact__action-arrow {
-  color:
-    var(--color-pink);
-
-  font-family:
-    var(--font-heading);
-
-  font-size: 17px;
-  font-weight: 900;
-
-  transition:
-    transform 170ms ease,
-    color 170ms ease;
-}
-
-.contact__action:hover
-.contact__action-arrow {
-  color:
-    #080808;
-
-  transform:
-    translateX(5px)
-    rotate(-5deg);
 }
 
 /* =========================
@@ -2447,6 +2509,14 @@
 ========================= */
 
 @media (max-width: 1000px) {
+  .contact__header-doodle {
+    right: -120px;
+
+    width: 280px;
+
+    opacity: 0.04;
+  }
+
   .contact__poster {
     padding-right: 105px;
     padding-left: 105px;
@@ -2462,6 +2532,10 @@
 }
 
 @media (max-width: 900px) {
+  .contact__header-doodle {
+    display: none;
+  }
+
   .contact__container {
     padding:
       90px
@@ -2705,10 +2779,6 @@
     font-size: 16px;
   }
 
-  .contact__email-arrow {
-    display: none;
-  }
-
   .contact__actions {
     gap: 14px;
 
@@ -2793,11 +2863,9 @@
   .contact__availability-dot,
   .contact__email,
   .contact__email-icon,
-  .contact__email-arrow,
   .contact__email-note-arrow,
   .contact__action,
   .contact__action-icon,
-  .contact__action-arrow,
   .contact__decoration,
   .contact__frame-line,
   .contact__heading-ink,
