@@ -1,0 +1,1717 @@
+@import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
+
+/* =========================
+   LOADER
+========================= */
+
+.loader {
+  position: fixed;
+  z-index: 99999;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100dvh;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 45, 149, 0.06),
+      transparent 38%
+    ),
+    #070708;
+
+  isolation: isolate;
+
+  pointer-events: all;
+
+  animation:
+    loaderExit
+    470ms
+    cubic-bezier(0.72, 0, 0.25, 1)
+    2.55s
+    forwards;
+}
+
+/* =========================
+   WALL TEXTURE
+========================= */
+
+.loader__wall-noise {
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.14;
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.08) 0 1px,
+      transparent 1.3px
+    );
+
+  background-size: 17px 17px;
+}
+
+/* =========================
+   PAINT ZONE
+========================= */
+
+.loader__paint-zone {
+  position: absolute;
+  z-index: 2;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+/* =========================
+   STROKES
+========================= */
+
+.loader__stroke {
+  position: absolute;
+
+  width: 105%;
+  height: 92px;
+
+  opacity: 0;
+
+  border-radius:
+    28% 51% 37% 55% /
+    44% 36% 57% 49%;
+
+  pointer-events: none;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.loader__stroke::before,
+.loader__stroke::after {
+  content: "";
+
+  position: absolute;
+
+  left: 3%;
+  right: 3%;
+
+  height: 12px;
+
+  background: inherit;
+
+  opacity: 0.68;
+
+  border-radius: 999px;
+}
+
+.loader__stroke::before {
+  top: -9px;
+
+  transform:
+    scaleX(0.94)
+    rotate(1deg);
+}
+
+.loader__stroke::after {
+  bottom: -9px;
+
+  transform:
+    scaleX(0.88)
+    rotate(-1.5deg);
+}
+
+/* =========================
+   ROUGH SPRAY EDGE
+========================= */
+
+.loader__stroke-edge {
+  position: absolute;
+
+  inset: -17px -10px;
+
+  color: inherit;
+
+  opacity: 0.45;
+
+  background-image:
+    radial-gradient(
+      circle,
+      currentColor 0 1.5px,
+      transparent 2.2px
+    );
+
+  background-size: 15px 15px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 17%,
+      transparent 39%,
+      transparent 61%,
+      #000 82%,
+      transparent
+    );
+}
+
+/* =========================
+   STROKE 1
+========================= */
+
+.loader__stroke--one {
+  left: -8%;
+  top: 14%;
+
+  color:
+    var(--color-pink);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 45, 149, 0.9) 8%,
+      #ff2d95 40%,
+      rgba(255, 45, 149, 0.83) 86%,
+      transparent
+    );
+
+  transform:
+    rotate(-6deg)
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
+  animation:
+    strokeOne
+    350ms
+    cubic-bezier(0.18, 0.75, 0.24, 1)
+    160ms
+    forwards;
+}
+
+/* =========================
+   STROKE 2
+========================= */
+
+.loader__stroke--two {
+  right: -8%;
+  top: 32%;
+
+  color:
+    var(--color-lilac);
+
+  background:
+    linear-gradient(
+      270deg,
+      transparent,
+      rgba(183, 140, 255, 0.9) 8%,
+      #b78cff 42%,
+      rgba(183, 140, 255, 0.8) 86%,
+      transparent
+    );
+
+  transform:
+    rotate(4deg)
+    scaleX(0);
+
+  transform-origin:
+    right center;
+
+  animation:
+    strokeTwo
+    340ms
+    cubic-bezier(0.18, 0.75, 0.24, 1)
+    460ms
+    forwards;
+}
+
+/* =========================
+   STROKE 3
+========================= */
+
+.loader__stroke--three {
+  left: -8%;
+  top: 49%;
+
+  height: 105px;
+
+  color:
+    #7042b4;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(112, 66, 180, 0.88) 8%,
+      #7042b4 44%,
+      rgba(112, 66, 180, 0.8) 87%,
+      transparent
+    );
+
+  transform:
+    rotate(-3deg)
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
+  animation:
+    strokeThree
+    340ms
+    cubic-bezier(0.18, 0.75, 0.24, 1)
+    750ms
+    forwards;
+}
+
+/* =========================
+   STROKE 4
+========================= */
+
+.loader__stroke--four {
+  right: -8%;
+  top: 66%;
+
+  height: 82px;
+
+  color:
+    var(--color-pink);
+
+  background:
+    linear-gradient(
+      270deg,
+      transparent,
+      rgba(255, 45, 149, 0.82) 8%,
+      #ff2d95 44%,
+      rgba(255, 45, 149, 0.75) 86%,
+      transparent
+    );
+
+  transform:
+    rotate(5deg)
+    scaleX(0);
+
+  transform-origin:
+    right center;
+
+  animation:
+    strokeFour
+    320ms
+    cubic-bezier(0.18, 0.75, 0.24, 1)
+    1.03s
+    forwards;
+}
+
+/* =========================
+   STROKE 5
+========================= */
+
+.loader__stroke--five {
+  left: -8%;
+  top: 79%;
+
+  height: 68px;
+
+  color:
+    var(--color-lilac);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(183, 140, 255, 0.8) 8%,
+      #b78cff 45%,
+      rgba(183, 140, 255, 0.7) 87%,
+      transparent
+    );
+
+  transform:
+    rotate(-4deg)
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
+  animation:
+    strokeFive
+    305ms
+    cubic-bezier(0.18, 0.75, 0.24, 1)
+    1.27s
+    forwards;
+}
+
+/* =========================
+   SPRAY CAN
+========================= */
+
+.loader__can-wrap {
+  position: absolute;
+  z-index: 20;
+
+  left: 50%;
+  top: 50%;
+
+  width:
+    clamp(
+      180px,
+      18vw,
+      265px
+    );
+
+  aspect-ratio: 1;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  will-change:
+    transform,
+    opacity;
+
+  animation:
+    gangstaGraffiti
+    1.55s
+    linear
+    60ms
+    forwards;
+}
+
+/* =========================
+   CAN IMAGE
+========================= */
+
+.loader__can {
+  position: relative;
+  z-index: 4;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+
+  filter:
+    drop-shadow(
+      7px
+      9px
+      0
+      rgba(0, 0, 0, 0.38)
+    );
+
+  animation:
+    sprayWrist
+    88ms
+    ease-in-out
+    140ms
+    16 alternate;
+}
+
+/* =========================
+   SPRAY MIST
+========================= */
+
+.loader__mist {
+  position: absolute;
+  z-index: 1;
+
+  left: -48%;
+  top: 28%;
+
+  width: 86%;
+  height: 47%;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at right center,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 45, 149, 0.65) 17%,
+      rgba(183, 140, 255, 0.28) 40%,
+      transparent 72%
+    );
+
+  transform:
+    scaleX(0.65);
+
+  transform-origin:
+    right center;
+
+  animation:
+    mistOnOff
+    1.48s
+    linear
+    100ms
+    forwards;
+}
+
+/* =========================
+   SPLATTERS
+========================= */
+
+.loader__splat {
+  position: absolute;
+  z-index: 12;
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  color:
+    var(--color-pink);
+
+  background:
+    currentColor;
+
+  box-shadow:
+    19px -8px 0 -2px currentColor,
+    34px 8px 0 -3px currentColor,
+    -17px 12px 0 -2px currentColor,
+    -32px -5px 0 -3px currentColor,
+    9px 22px 0 -3px currentColor;
+
+  animation:
+    splatPop
+    250ms
+    ease-out
+    forwards;
+}
+
+.loader__splat--one {
+  left: 13%;
+  top: 12%;
+
+  animation-delay:
+    330ms;
+}
+
+.loader__splat--two {
+  right: 15%;
+  top: 28%;
+
+  color:
+    var(--color-lilac);
+
+  animation-delay:
+    610ms;
+}
+
+.loader__splat--three {
+  left: 22%;
+  top: 46%;
+
+  color:
+    #7042b4;
+
+  animation-delay:
+    865ms;
+}
+
+.loader__splat--four {
+  right: 17%;
+  top: 62%;
+
+  animation-delay:
+    1.08s;
+}
+
+.loader__splat--five {
+  left: 30%;
+  bottom: 12%;
+
+  color:
+    var(--color-lilac);
+
+  animation-delay:
+    1.30s;
+}
+
+.loader__splat--six {
+  right: 32%;
+  bottom: 20%;
+
+  color:
+    #7042b4;
+
+  animation-delay:
+    1.44s;
+}
+
+/* =========================
+   MQGIA TAG
+========================= */
+
+.loader__tag {
+  position: absolute;
+  z-index: 40;
+
+  left: 50%;
+  top: 50%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-7deg)
+    scale(0.65);
+
+  animation:
+    tagDrop
+    420ms
+    cubic-bezier(0.16, 1.28, 0.3, 1)
+    1.62s
+    forwards;
+}
+
+/* =========================
+   DARK GRAFFITI HALO
+========================= */
+
+.loader__tag::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  left: 50%;
+  top: 50%;
+
+  width: 165%;
+  height: 150%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(5, 5, 6, 0.68) 0%,
+      rgba(5, 5, 6, 0.43) 42%,
+      rgba(5, 5, 6, 0.16) 62%,
+      transparent 76%
+    );
+
+  transform:
+    translate(-50%, -50%)
+    rotate(3deg);
+}
+
+/* =========================
+   MQGIA LETTERING WRAPPER
+========================= */
+
+.loader__tag-text {
+  position: relative;
+  z-index: 2;
+
+  display: inline-flex;
+
+  align-items: baseline;
+  justify-content: center;
+
+  font-family:
+    "Mr Dafoe",
+    cursive;
+
+  font-size:
+    clamp(
+      86px,
+      10.5vw,
+      150px
+    );
+
+  font-weight: 400;
+
+  line-height: 0.82;
+
+  letter-spacing: 0;
+
+  white-space: nowrap;
+
+  font-variant-ligatures: none;
+
+  font-feature-settings:
+    "liga" 0,
+    "clig" 0,
+    "calt" 0;
+
+  transform:
+    skewX(-3deg);
+}
+
+/* =========================
+   SHARED LETTER STYLE
+========================= */
+
+.loader__tag-first,
+.loader__tag-main,
+.loader__tag-end,
+.loader__tag-dot {
+  position: relative;
+
+  display: inline-block;
+
+  -webkit-text-stroke:
+    2px
+    #080808;
+}
+
+/* =========================
+   M — PINK
+========================= */
+
+.loader__tag-first {
+  color:
+    #ff69b4;
+
+  -webkit-text-fill-color:
+    #ff69b4;
+
+  margin-right: -0.045em;
+
+  text-shadow:
+    2px 0 0 #080808,
+    -2px 0 0 #080808,
+    0 2px 0 #080808,
+    0 -2px 0 #080808,
+
+    5px 5px 0 #b78cff,
+
+    9px 9px 0 #7042b4,
+
+    12px 12px 0
+    rgba(8, 8, 8, 0.72);
+
+  transform:
+    rotate(-1deg);
+}
+
+/* =========================
+   QGI — CREAM
+========================= */
+
+.loader__tag-main {
+  color:
+    #fff9f2;
+
+  -webkit-text-fill-color:
+    #fff9f2;
+
+  margin-left: -0.015em;
+
+  text-shadow:
+    2px 0 0 #080808,
+    -2px 0 0 #080808,
+    0 2px 0 #080808,
+    0 -2px 0 #080808,
+
+    5px 5px 0 #ff2d95,
+
+    9px 9px 0 #7042b4,
+
+    12px 12px 0
+    rgba(8, 8, 8, 0.72);
+}
+
+/* =========================
+   A — PINK
+========================= */
+
+.loader__tag-end {
+  color:
+    #ff69b4;
+
+  -webkit-text-fill-color:
+    #ff69b4;
+
+  /*
+    Aquí dejamos el aire necesario
+    para que la i NO se empalme.
+  */
+  margin-left: 0.13em;
+
+  text-shadow:
+    2px 0 0 #080808,
+    -2px 0 0 #080808,
+    0 2px 0 #080808,
+    0 -2px 0 #080808,
+
+    5px 5px 0 #b78cff,
+
+    9px 9px 0 #7042b4,
+
+    12px 12px 0
+    rgba(8, 8, 8, 0.72);
+
+  transform:
+    translateY(1px)
+    rotate(1deg);
+}
+
+/* =========================
+   DOT — LILAC
+========================= */
+
+.loader__tag-dot {
+  color:
+    #b78cff;
+
+  -webkit-text-fill-color:
+    #b78cff;
+
+  margin-left: -0.025em;
+
+  text-shadow:
+    2px 0 0 #080808,
+    -2px 0 0 #080808,
+    0 2px 0 #080808,
+    0 -2px 0 #080808,
+
+    4px 4px 0 #ff2d95,
+
+    7px 7px 0 #7042b4,
+
+    10px 10px 0
+    rgba(8, 8, 8, 0.72);
+
+  transform:
+    translateY(1px)
+    rotate(-3deg);
+}
+
+/* =========================
+   TAG LINE
+========================= */
+
+.loader__tag-underline {
+  position: relative;
+  z-index: 3;
+
+  width: 0;
+  height: 15px;
+
+  margin-top: 5px;
+
+  border-top:
+    6px solid
+    var(--color-pink);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  filter:
+    drop-shadow(
+      3px
+      3px
+      0
+      #080808
+    )
+    drop-shadow(
+      6px
+      5px
+      0
+      rgba(112, 66, 180, 0.85)
+    );
+
+  transform:
+    translateX(5px)
+    rotate(-5deg);
+
+  animation:
+    tagLine
+    300ms
+    ease-out
+    1.85s
+    forwards;
+}
+
+/* =========================
+   DRIPS
+========================= */
+
+.loader__drip {
+  position: absolute;
+  z-index: 3;
+
+  top: 88%;
+
+  width: 6px;
+  height: 0;
+
+  opacity: 0;
+
+  border-radius:
+    0
+    0
+    999px
+    999px;
+
+  background:
+    var(--color-pink);
+
+  animation:
+    paintDrip
+    390ms
+    ease-in
+    1.92s
+    forwards;
+}
+
+.loader__drip--one {
+  left: 22%;
+}
+
+.loader__drip--two {
+  left: 52%;
+
+  width: 4px;
+
+  background:
+    var(--color-lilac);
+
+  animation-delay:
+    1.98s;
+}
+
+.loader__drip--three {
+  right: 19%;
+
+  width: 7px;
+
+  animation-delay:
+    1.95s;
+}
+
+/* =========================
+   STREET STARS
+========================= */
+
+.loader__star {
+  position: absolute;
+  z-index: 45;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  font-family:
+    var(--font-display);
+
+  transform:
+    scale(0)
+    rotate(-15deg);
+
+  animation:
+    streetStar
+    290ms
+    ease-out
+    forwards;
+}
+
+.loader__star--one {
+  left: 19%;
+  top: 21%;
+
+  color:
+    var(--color-pink);
+
+  font-size: 36px;
+
+  animation-delay:
+    1.72s;
+}
+
+.loader__star--two {
+  right: 18%;
+  bottom: 25%;
+
+  color:
+    var(--color-lilac);
+
+  font-size: 32px;
+
+  animation-delay:
+    1.82s;
+}
+
+.loader__star--three {
+  right: 31%;
+  top: 15%;
+
+  color:
+    var(--color-pink);
+
+  font-size: 24px;
+
+  animation-delay:
+    1.92s;
+}
+
+/* =========================
+   CAN MOVEMENT
+========================= */
+
+@keyframes gangstaGraffiti {
+  0% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        -68vw,
+        -41vh,
+        0
+      )
+      rotate(-18deg)
+      scale(0.82);
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  18% {
+    transform:
+      translate3d(
+        41vw,
+        -33vh,
+        0
+      )
+      rotate(9deg)
+      scale(1);
+  }
+
+  22% {
+    transform:
+      translate3d(
+        33vw,
+        -21vh,
+        0
+      )
+      rotate(17deg)
+      scale(0.96);
+  }
+
+  37% {
+    transform:
+      translate3d(
+        -54vw,
+        -14vh,
+        0
+      )
+      rotate(-15deg)
+      scale(1);
+  }
+
+  41% {
+    transform:
+      translate3d(
+        -46vw,
+        -3vh,
+        0
+      )
+      rotate(-7deg)
+      scale(0.95);
+  }
+
+  56% {
+    transform:
+      translate3d(
+        48vw,
+        3vh,
+        0
+      )
+      rotate(16deg)
+      scale(1.02);
+  }
+
+  60% {
+    transform:
+      translate3d(
+        39vw,
+        14vh,
+        0
+      )
+      rotate(9deg)
+      scale(0.94);
+  }
+
+  73% {
+    transform:
+      translate3d(
+        -51vw,
+        20vh,
+        0
+      )
+      rotate(-19deg)
+      scale(1);
+  }
+
+  77% {
+    transform:
+      translate3d(
+        -42vw,
+        29vh,
+        0
+      )
+      rotate(-9deg)
+      scale(0.94);
+  }
+
+  90% {
+    opacity: 1;
+
+    transform:
+      translate3d(
+        42vw,
+        34vh,
+        0
+      )
+      rotate(18deg)
+      scale(0.96);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        65vw,
+        45vh,
+        0
+      )
+      rotate(28deg)
+      scale(0.74);
+  }
+}
+
+/* =========================
+   WRIST SHAKE
+========================= */
+
+@keyframes sprayWrist {
+  from {
+    translate:
+      -2px
+      -1px;
+
+    rotate:
+      -1.5deg;
+  }
+
+  to {
+    translate:
+      3px
+      2px;
+
+    rotate:
+      1.5deg;
+  }
+}
+
+/* =========================
+   SPRAY MIST
+========================= */
+
+@keyframes mistOnOff {
+  0%,
+  3% {
+    opacity: 0;
+  }
+
+  6%,
+  18% {
+    opacity: 0.85;
+  }
+
+  20%,
+  23% {
+    opacity: 0;
+  }
+
+  25%,
+  38% {
+    opacity: 0.82;
+  }
+
+  40%,
+  43% {
+    opacity: 0;
+  }
+
+  45%,
+  57% {
+    opacity: 0.86;
+  }
+
+  59%,
+  62% {
+    opacity: 0;
+  }
+
+  64%,
+  75% {
+    opacity: 0.84;
+  }
+
+  77%,
+  80% {
+    opacity: 0;
+  }
+
+  82%,
+  92% {
+    opacity: 0.84;
+  }
+
+  95%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* =========================
+   PAINT STROKES
+========================= */
+
+@keyframes strokeOne {
+  from {
+    opacity: 0;
+
+    transform:
+      rotate(-6deg)
+      scaleX(0);
+  }
+
+  7% {
+    opacity: 0.95;
+  }
+
+  to {
+    opacity: 0.74;
+
+    transform:
+      rotate(-6deg)
+      scaleX(1);
+  }
+}
+
+@keyframes strokeTwo {
+  from {
+    opacity: 0;
+
+    transform:
+      rotate(4deg)
+      scaleX(0);
+  }
+
+  7% {
+    opacity: 0.93;
+  }
+
+  to {
+    opacity: 0.68;
+
+    transform:
+      rotate(4deg)
+      scaleX(1);
+  }
+}
+
+@keyframes strokeThree {
+  from {
+    opacity: 0;
+
+    transform:
+      rotate(-3deg)
+      scaleX(0);
+  }
+
+  7% {
+    opacity: 0.92;
+  }
+
+  to {
+    opacity: 0.64;
+
+    transform:
+      rotate(-3deg)
+      scaleX(1);
+  }
+}
+
+@keyframes strokeFour {
+  from {
+    opacity: 0;
+
+    transform:
+      rotate(5deg)
+      scaleX(0);
+  }
+
+  7% {
+    opacity: 0.9;
+  }
+
+  to {
+    opacity: 0.6;
+
+    transform:
+      rotate(5deg)
+      scaleX(1);
+  }
+}
+
+@keyframes strokeFive {
+  from {
+    opacity: 0;
+
+    transform:
+      rotate(-4deg)
+      scaleX(0);
+  }
+
+  7% {
+    opacity: 0.9;
+  }
+
+  to {
+    opacity: 0.55;
+
+    transform:
+      rotate(-4deg)
+      scaleX(1);
+  }
+}
+
+/* =========================
+   SPLAT
+========================= */
+
+@keyframes splatPop {
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.2)
+      rotate(-12deg);
+  }
+
+  65% {
+    opacity: 0.9;
+
+    transform:
+      scale(1.22)
+      rotate(8deg);
+  }
+
+  100% {
+    opacity: 0.52;
+
+    transform:
+      scale(1)
+      rotate(-2deg);
+  }
+}
+
+/* =========================
+   TAG
+========================= */
+
+@keyframes tagDrop {
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(-12deg)
+      scale(0.58);
+  }
+
+  62% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(3deg)
+      scale(1.11);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(-5deg)
+      scale(1);
+  }
+}
+
+/* =========================
+   TAG LINE
+========================= */
+
+@keyframes tagLine {
+  0% {
+    width: 0;
+
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 120%;
+
+    opacity: 0.95;
+  }
+}
+
+/* =========================
+   DRIPS
+========================= */
+
+@keyframes paintDrip {
+  0% {
+    height: 0;
+
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.75;
+  }
+
+  100% {
+    height: 42px;
+
+    opacity: 0.52;
+  }
+}
+
+/* =========================
+   STREET STAR
+========================= */
+
+@keyframes streetStar {
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0)
+      rotate(-20deg);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      scale(1.3)
+      rotate(9deg);
+  }
+
+  100% {
+    opacity: 0.85;
+
+    transform:
+      scale(1)
+      rotate(-3deg);
+  }
+}
+
+/* =========================
+   EXIT
+========================= */
+
+@keyframes loaderExit {
+  0% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+
+  30% {
+    opacity: 1;
+
+    transform:
+      scale(1.01);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      scale(1.045);
+
+    visibility: hidden;
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .loader__can-wrap {
+    width:
+      clamp(
+        165px,
+        26vw,
+        230px
+      );
+  }
+
+  .loader__stroke {
+    height: 82px;
+  }
+
+  .loader__tag-text {
+    font-size:
+      clamp(
+        78px,
+        13vw,
+        125px
+      );
+  }
+
+  .loader__tag-end {
+    margin-left: 0.14em;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .loader__can-wrap {
+    width:
+      clamp(
+        155px,
+        41vw,
+        205px
+      );
+  }
+
+  .loader__stroke {
+    width: 115%;
+    height: 72px;
+  }
+
+  .loader__stroke--one {
+    top: 15%;
+  }
+
+  .loader__stroke--two {
+    top: 32%;
+  }
+
+  .loader__stroke--three {
+    top: 49%;
+
+    height: 82px;
+  }
+
+  .loader__stroke--four {
+    top: 66%;
+  }
+
+  .loader__stroke--five {
+    top: 79%;
+
+    height: 60px;
+  }
+
+  .loader__tag-text {
+    font-size:
+      clamp(
+        72px,
+        20vw,
+        105px
+      );
+  }
+
+  .loader__tag-first,
+  .loader__tag-main,
+  .loader__tag-end,
+  .loader__tag-dot {
+    -webkit-text-stroke:
+      1.5px
+      #080808;
+  }
+
+  .loader__tag-first {
+    text-shadow:
+      2px 0 0 #080808,
+      -2px 0 0 #080808,
+      0 2px 0 #080808,
+      0 -2px 0 #080808,
+      4px 4px 0 #b78cff,
+      7px 7px 0 #7042b4,
+      10px 10px 0 rgba(8, 8, 8, 0.72);
+  }
+
+  .loader__tag-main {
+    text-shadow:
+      2px 0 0 #080808,
+      -2px 0 0 #080808,
+      0 2px 0 #080808,
+      0 -2px 0 #080808,
+      4px 4px 0 #ff2d95,
+      7px 7px 0 #7042b4,
+      10px 10px 0 rgba(8, 8, 8, 0.72);
+  }
+
+  .loader__tag-end {
+    margin-left: 0.15em;
+
+    text-shadow:
+      2px 0 0 #080808,
+      -2px 0 0 #080808,
+      0 2px 0 #080808,
+      0 -2px 0 #080808,
+      4px 4px 0 #b78cff,
+      7px 7px 0 #7042b4,
+      10px 10px 0 rgba(8, 8, 8, 0.72);
+  }
+
+  .loader__tag-dot {
+    text-shadow:
+      2px 0 0 #080808,
+      -2px 0 0 #080808,
+      0 2px 0 #080808,
+      0 -2px 0 #080808,
+      4px 4px 0 #ff2d95,
+      7px 7px 0 #7042b4,
+      10px 10px 0 rgba(8, 8, 8, 0.72);
+  }
+
+  .loader__tag::before {
+    width: 175%;
+    height: 160%;
+  }
+
+  .loader__star--one {
+    left: 10%;
+  }
+
+  .loader__star--two {
+    right: 10%;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .loader__can-wrap {
+    width: 165px;
+  }
+
+  .loader__tag-text {
+    font-size: 76px;
+  }
+
+  .loader__tag-end {
+    margin-left: 0.17em;
+  }
+
+  .loader__tag-underline {
+    margin-top: 7px;
+
+    border-top-width: 4px;
+  }
+
+  .loader__tag::before {
+    width: 185%;
+    height: 165%;
+  }
+
+  .loader__splat {
+    scale: 0.8;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .loader__can-wrap,
+  .loader__can,
+  .loader__mist,
+  .loader__stroke,
+  .loader__splat,
+  .loader__tag,
+  .loader__tag-underline,
+  .loader__drip,
+  .loader__star {
+    animation: none;
+  }
+
+  .loader__can-wrap,
+  .loader__mist,
+  .loader__stroke,
+  .loader__splat,
+  .loader__star {
+    display: none;
+  }
+
+  .loader__tag {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(-5deg)
+      scale(1);
+  }
+
+  .loader__tag-underline {
+    width: 120%;
+
+    opacity: 0.95;
+  }
+
+  .loader {
+    animation:
+      loaderExit
+      300ms
+      ease
+      1.2s
+      forwards;
+  }
+}
