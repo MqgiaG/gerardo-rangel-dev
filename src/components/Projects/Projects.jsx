@@ -1,33 +1,249 @@
 import './Projects.css'
 
+const projects = [
+  {
+    type: 'React · Vite · CSS',
+    title: 'VIVANCOFFEE',
+    description:
+      'Experiencia web desarrollada para una cafetería real, con diseño responsivo, menú interactivo, animaciones y una identidad visual enfocada en la marca.',
+    previewType: 'live',
+    preview: 'https://mqgiag.github.io/RVIVANCOFFEE/',
+    liveUrl: 'https://mqgiag.github.io/RVIVANCOFFEE/',
+    githubUrl: 'https://github.com/MqgiaG/RVIVANCOFFEE',
+  },
+  {
+    type: 'HTML · CSS · BEM',
+    title: 'Triple Espresso',
+    description:
+      'Landing page para una cafetería de especialidad, desarrollada con HTML y CSS utilizando metodología BEM, diseño responsivo y una composición visual limpia.',
+    previewType: 'live',
+    preview: 'https://mqgiag.github.io/web_project_coffeeshop_es/',
+    previewMode: 'desktop',
+    liveUrl: 'https://mqgiag.github.io/web_project_coffeeshop_es/',
+    githubUrl: 'https://github.com/MqgiaG/web_project_coffeeshop_es',
+  },
+  {
+    type: 'React · Node.js · Express · MongoDB',
+    title: 'Around The U.S.',
+    description:
+      'Aplicación Full Stack con autenticación, perfiles de usuario, creación de tarjetas y sistema de likes, conectando frontend, API REST y base de datos.',
+    previewType: 'image',
+    preview: '/images/projects/around-fullstack.png',
+    liveUrl: null,
+    githubUrl: 'https://github.com/MqgiaG/web_project_around_full',
+  },
+]
+
 function Projects() {
   return (
     <section className="projects section" id="projects">
       <div className="section__container">
-        <p className="section__eyebrow">03 — Proyectos</p>
+        <header className="projects__header">
+          <div className="projects__section-label">
+            <span className="projects__section-number">
+              03
+            </span>
 
-        <h2 className="section__title">Cosas que he construido.</h2>
+            <span className="projects__section-name">
+              PROYECTOS
+            </span>
+          </div>
 
-        <article className="project">
-          <div className="project__number">01</div>
+          <h2 className="projects__heading">
+            <span className="projects__heading-main">
+              Ideas que llevé a
+            </span>
 
-          <div className="project__content">
-            <p className="project__type">React · Vite · CSS</p>
+            <span className="projects__heading-script">
+              pantalla.
+            </span>
+          </h2>
 
-            <h3 className="project__title">VivanCoffee</h3>
+          <p className="projects__intro">
+            Una selección de proyectos donde mezclo diseño, frontend y
+            backend para convertir ideas en experiencias que realmente
+            funcionan.
+          </p>
+        </header>
 
-            <p className="project__description">
-              Aplicación web desarrollada con React para una cafetería,
-              enfocada en una experiencia moderna, funcional y responsiva.
+        <div className="projects__list">
+          {projects.map((project) => (
+            <article
+              className="project"
+              key={project.title}
+            >
+              <div className="project__preview">
+                <div className="project__browser">
+                  <div className="project__browser-bar">
+                    <div
+                      className="project__browser-dots"
+                      aria-hidden="true"
+                    >
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+
+                    <span className="project__browser-name">
+                      {project.title}
+                    </span>
+
+                    <span
+                      className="project__browser-star"
+                      aria-hidden="true"
+                    >
+                      ✦
+                    </span>
+                  </div>
+
+                  <div
+                    className={`project__browser-content ${
+                      project.previewMode === 'desktop'
+                        ? 'project__browser-content--desktop'
+                        : ''
+                    }`}
+                  >
+                    {project.previewType === 'live' ? (
+                      <iframe
+                        src={project.preview}
+                        title={`Vista previa de ${project.title}`}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <img
+                        src={project.preview}
+                        alt={`Vista previa del proyecto ${project.title}`}
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <span
+                  className="project__doodle project__doodle--star"
+                  aria-hidden="true"
+                >
+                  ★
+                </span>
+
+                <span
+                  className="project__doodle project__doodle--spark"
+                  aria-hidden="true"
+                >
+                  ✦
+                </span>
+              </div>
+
+              <div className="project__content">
+                <div className="project__top">
+                  <span
+                    className="project__check"
+                    aria-hidden="true"
+                  >
+                    ✔
+                  </span>
+
+                  <p className="project__type">
+                    {project.type}
+                  </p>
+                </div>
+
+                <h3 className="project__title">
+                  {project.title}
+                </h3>
+
+                <p className="project__description">
+                  {project.description}
+                </p>
+
+                <div className="project__links">
+                  {project.liveUrl && (
+                    <a
+                      className="project__link project__link--primary"
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Ver proyecto
+                    </a>
+                  )}
+
+                  <a
+                    className="project__link project__link--github"
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub
+
+                    <span
+                      className="project__github-arrow"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+
+                    <span
+                      className="project__github-badge"
+                      aria-hidden="true"
+                    >
+                      <img
+                        src="/icons/skills/github.svg"
+                        alt=""
+                      />
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="projects__footer">
+          <span
+            className="projects__footer-tape"
+            aria-hidden="true"
+          />
+
+          <span
+            className="projects__footer-star projects__footer-star--one"
+            aria-hidden="true"
+          >
+            ✦
+          </span>
+
+          <span
+            className="projects__footer-star projects__footer-star--two"
+            aria-hidden="true"
+          >
+            ★
+          </span>
+
+          <div
+            className="projects__footer-stamp"
+            aria-hidden="true"
+          >
+            <span>BUILD</span>
+            <span>SHIP</span>
+          </div>
+
+          <div className="projects__footer-copy">
+            <p className="projects__footer-kicker">
+              TODO EMPIEZA AQUÍ
             </p>
 
-            <div className="project__links">
-              <a href="#" aria-label="Ver proyecto VivanCoffee">
-                Ver proyecto →
-              </a>
-            </div>
+            <p className="projects__footer-message">
+              Cada proyecto empezó con una
+              <strong> pantalla vacía.</strong>
+            </p>
           </div>
-        </article>
+
+          <span
+            className="projects__footer-squiggle"
+            aria-hidden="true"
+          >
+            ~~~~~
+          </span>
+        </div>
       </div>
     </section>
   )
