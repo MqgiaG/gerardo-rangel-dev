@@ -1,6 +1,37 @@
+import { useEffect, useRef, useState } from 'react'
 import './Contact.css'
 
 function Contact() {
+  const headingRef = useRef(null)
+  const [isHeadingDrawn, setIsHeadingDrawn] = useState(false)
+
+  useEffect(() => {
+    const heading = headingRef.current
+
+    if (!heading) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeadingDrawn(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -12% 0px',
+      },
+    )
+
+    observer.observe(heading)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <section className="contact section" id="contact">
       <div className="contact__container">
@@ -15,13 +46,50 @@ function Contact() {
             </span>
           </div>
 
-          <h2 className="contact__heading">
+          <h2
+            ref={headingRef}
+            className={`contact__heading${
+              isHeadingDrawn
+                ? ' contact__heading--drawn'
+                : ''
+            }`}
+          >
             <span className="contact__heading-main">
-              ¿Construimos algo
+              <span className="contact__heading-ink">
+                ¿Construimos algo
+              </span>
+
+              <span
+                className="contact__marker-tip contact__marker-tip--main"
+                aria-hidden="true"
+              >
+                <span className="contact__pencil">
+                  <span className="contact__pencil-eraser" />
+                  <span className="contact__pencil-metal" />
+                  <span className="contact__pencil-body" />
+                  <span className="contact__pencil-wood" />
+                  <span className="contact__pencil-lead" />
+                </span>
+              </span>
             </span>
 
             <span className="contact__heading-script">
-              juntos?
+              <span className="contact__heading-ink">
+                juntos?
+              </span>
+
+              <span
+                className="contact__marker-tip contact__marker-tip--script"
+                aria-hidden="true"
+              >
+                <span className="contact__pencil">
+                  <span className="contact__pencil-eraser" />
+                  <span className="contact__pencil-metal" />
+                  <span className="contact__pencil-body" />
+                  <span className="contact__pencil-wood" />
+                  <span className="contact__pencil-lead" />
+                </span>
+              </span>
             </span>
           </h2>
 

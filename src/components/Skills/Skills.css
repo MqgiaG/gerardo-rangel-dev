@@ -163,6 +163,10 @@
   color: #85858b;
 }
 
+/* =========================
+   TITLE
+========================= */
+
 .skills__title {
   margin: 0;
 
@@ -198,11 +202,6 @@
   transform-origin: left center;
 }
 
-/*
-  El texto se revela como una sola pincelada.
-  El lápiz acompaña el borde del trazo.
-*/
-
 .skills__title-ink {
   display: inline-block;
 
@@ -224,8 +223,8 @@
   left: 0;
   top: 55%;
 
-  width: 70px;
-  height: 22px;
+  width: 34px;
+  height: 11px;
 
   pointer-events: none;
 
@@ -233,17 +232,17 @@
 
   transform:
     translate(
-      calc(-100% - 17px),
+      7px,
       -50%
     )
     rotate(-24deg);
 
-  transform-origin: right center;
+  transform-origin: left center;
 
   filter:
     drop-shadow(
-      3px
-      4px
+      1px
+      1px
       0
       rgba(8, 8, 8, 0.7)
     );
@@ -255,11 +254,11 @@
 }
 
 .skills__marker-tip--main {
-  top: 54%;
+  top: 42%;
 }
 
 .skills__marker-tip--script {
-  top: 59%;
+  top: 47%;
 }
 
 /* =========================
@@ -269,23 +268,34 @@
 .skills__pencil {
   position: relative;
 
-  width: 70px;
-  height: 22px;
+  width: 34px;
+  height: 11px;
 
   display: block;
+
+  /*
+    VOLTEA FÍSICAMENTE EL LÁPIZ.
+    La punta ahora mira hacia la izquierda.
+  */
+
+  transform: scaleX(-1);
+
+  transform-origin: center;
 }
 
-/* pink eraser */
+/* =========================
+   PENCIL ERASER
+========================= */
 
 .skills__pencil-eraser {
   position: absolute;
   z-index: 2;
 
   left: 0;
-  top: 2px;
+  top: 1px;
 
-  width: 13px;
-  height: 18px;
+  width: 7px;
+  height: 9px;
 
   background:
     linear-gradient(
@@ -295,55 +305,59 @@
     );
 
   border:
-    2px solid
+    1px solid
     #080808;
 
   border-radius:
-    7px
-    2px
-    2px
-    7px;
+    4px
+    1px
+    1px
+    4px;
 }
 
-/* metallic band */
+/* =========================
+   PENCIL METAL
+========================= */
 
 .skills__pencil-metal {
   position: absolute;
   z-index: 3;
 
-  left: 11px;
-  top: 2px;
+  left: 6px;
+  top: 1px;
 
-  width: 10px;
-  height: 18px;
+  width: 5px;
+  height: 9px;
 
   background:
     repeating-linear-gradient(
       90deg,
-      #d8d8dc 0 2px,
-      #8d8e95 2px 4px
+      #d8d8dc 0 1px,
+      #8d8e95 1px 2px
     );
 
   border-top:
-    2px solid
+    1px solid
     #080808;
 
   border-bottom:
-    2px solid
+    1px solid
     #080808;
 }
 
-/* yellow pencil body */
+/* =========================
+   PENCIL BODY
+========================= */
 
 .skills__pencil-body {
   position: absolute;
   z-index: 1;
 
-  left: 19px;
-  top: 2px;
+  left: 10px;
+  top: 1px;
 
-  width: 38px;
-  height: 18px;
+  width: 17px;
+  height: 9px;
 
   background:
     linear-gradient(
@@ -357,83 +371,87 @@
     );
 
   border-top:
-    2px solid
+    1px solid
     #080808;
 
   border-bottom:
-    2px solid
+    1px solid
     #080808;
 }
-
-/* wood */
-
-.skills__pencil-wood {
-  position: absolute;
-  z-index: 1;
-
-  right: 3px;
-  top: 2px;
-
-  width: 17px;
-  height: 18px;
-
-  background: #e7b77f;
-
-  border-top:
-    2px solid
-    #080808;
-
-  border-bottom:
-    2px solid
-    #080808;
-
-  clip-path:
-    polygon(
-      0 0,
-      100% 50%,
-      0 100%
-    );
-}
-
-/* graphite */
-
-.skills__pencil-lead {
-  position: absolute;
-  z-index: 4;
-
-  right: -1px;
-  top: 7px;
-
-  width: 8px;
-  height: 8px;
-
-  background: #1a1a1d;
-
-  clip-path:
-    polygon(
-      0 0,
-      100% 50%,
-      0 100%
-    );
-}
-
-/* tiny cartoon highlight */
 
 .skills__pencil-body::after {
   content: '';
 
   position: absolute;
 
-  left: 5px;
-  top: 2px;
+  left: 3px;
+  top: 1px;
 
-  width: 24px;
-  height: 2px;
+  width: 10px;
+  height: 1px;
 
   border-radius: 999px;
 
   background:
-    rgba(255, 255, 255, 0.45);
+    rgba(255, 255, 255, 0.42);
+}
+
+/* =========================
+   PENCIL WOOD
+========================= */
+
+.skills__pencil-wood {
+  position: absolute;
+  z-index: 1;
+
+  right: 2px;
+  top: 1px;
+
+  width: 8px;
+  height: 9px;
+
+  background:
+    #e7b77f;
+
+  border-top:
+    1px solid
+    #080808;
+
+  border-bottom:
+    1px solid
+    #080808;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+}
+
+/* =========================
+   PENCIL LEAD
+========================= */
+
+.skills__pencil-lead {
+  position: absolute;
+  z-index: 4;
+
+  right: -1px;
+  top: 4px;
+
+  width: 4px;
+  height: 4px;
+
+  background:
+    #1a1a1d;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
 }
 
 /* =========================
@@ -444,7 +462,8 @@
 .skills__title-row--main
 .skills__title-ink {
   animation:
-    skillsInkReveal 1.05s
+    skillsInkReveal
+    1.05s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     forwards;
 }
@@ -453,7 +472,8 @@
 .skills__title-row--main
 .skills__marker-tip {
   animation:
-    skillsMarkerMain 1.05s
+    skillsMarkerMain
+    1.05s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     forwards;
 }
@@ -462,7 +482,8 @@
 .skills__title-row--script
 .skills__title-ink {
   animation:
-    skillsInkReveal 1.25s
+    skillsInkReveal
+    1.25s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     1.02s
     forwards;
@@ -472,13 +493,16 @@
 .skills__title-row--script
 .skills__marker-tip {
   animation:
-    skillsMarkerScript 1.25s
+    skillsMarkerScript
+    1.25s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     1.02s
     forwards;
 }
 
-/* little hand-drawn finish */
+/* =========================
+   TITLE UNDERLINE
+========================= */
 
 .skills__title-row--script::after {
   content: '';
@@ -509,7 +533,8 @@
 .skills__title--drawn
 .skills__title-row--script::after {
   animation:
-    skillsTitleUnderline 520ms
+    skillsTitleUnderline
+    520ms
     cubic-bezier(0.2, 0.75, 0.25, 1)
     2.18s
     forwards;
@@ -662,15 +687,11 @@
   gap: 12px;
 }
 
-/* FRONTEND */
-
 .skills__group--frontend
 .skills__grid {
   grid-template-columns:
     repeat(6, minmax(0, 1fr));
 }
-
-/* BACKEND */
 
 .skills__group--backend
 .skills__grid {
@@ -678,15 +699,11 @@
     repeat(4, minmax(0, 1fr));
 }
 
-/* TOOLS */
-
 .skills__group--tools
 .skills__grid {
   grid-template-columns:
     repeat(4, minmax(0, 1fr));
 }
-
-/* DESIGN */
 
 .skills__group--design
 .skills__grid {
@@ -696,7 +713,7 @@
 }
 
 /* =========================
-   COMPACT STICKER
+   STICKER
 ========================= */
 
 .skills__sticker {
@@ -915,10 +932,6 @@
     filter 200ms ease,
     opacity 200ms ease;
 }
-
-/* =========================
-   EXPRESS + GITHUB
-========================= */
 
 .skills__icon-image--light {
   filter:
@@ -1275,34 +1288,64 @@
 }
 
 /* =========================
-   ANIMATIONS
-========================= */
-
-/* =========================
-   TITLE DRAW ANIMATIONS
+   TITLE ANIMATIONS
 ========================= */
 
 @keyframes skillsInkReveal {
   0% {
-    clip-path: inset(-12% 100% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        100%
+        -12%
+        0
+      );
   }
 
   18% {
-    clip-path: inset(-12% 82% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        82%
+        -12%
+        0
+      );
   }
 
   42% {
-    clip-path: inset(-12% 57% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        57%
+        -12%
+        0
+      );
   }
 
   68% {
-    clip-path: inset(-12% 31% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        31%
+        -12%
+        0
+      );
   }
 
   100% {
-    clip-path: inset(-12% -4% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        -4%
+        -12%
+        0
+      );
   }
 }
+
+/* =========================
+   PENCIL ANIMATION MAIN
+========================= */
 
 @keyframes skillsMarkerMain {
   0% {
@@ -1312,7 +1355,7 @@
 
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -50%
       )
       rotate(-24deg);
@@ -1325,7 +1368,7 @@
   22% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -56%
       )
       rotate(-20deg);
@@ -1334,7 +1377,7 @@
   43% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -45%
       )
       rotate(-27deg);
@@ -1343,7 +1386,7 @@
   64% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -55%
       )
       rotate(-21deg);
@@ -1352,7 +1395,7 @@
   83% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -47%
       )
       rotate(-26deg);
@@ -1369,12 +1412,16 @@
 
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -50%
       )
       rotate(-23deg);
   }
 }
+
+/* =========================
+   PENCIL ANIMATION SCRIPT
+========================= */
 
 @keyframes skillsMarkerScript {
   0% {
@@ -1384,7 +1431,7 @@
 
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -50%
       )
       rotate(-24deg);
@@ -1397,7 +1444,7 @@
   20% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -58%
       )
       rotate(-19deg);
@@ -1406,7 +1453,7 @@
   38% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -44%
       )
       rotate(-28deg);
@@ -1415,7 +1462,7 @@
   57% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -56%
       )
       rotate(-20deg);
@@ -1424,7 +1471,7 @@
   76% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -46%
       )
       rotate(-27deg);
@@ -1433,7 +1480,7 @@
   91% {
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -54%
       )
       rotate(-22deg);
@@ -1450,7 +1497,7 @@
 
     transform:
       translate(
-        calc(-100% - 17px),
+        7px,
         -50%
       )
       rotate(-24deg);
@@ -1496,8 +1543,6 @@
     translate: 0 -8px;
   }
 }
-
-/* FLECHA CARTOON */
 
 @keyframes skillsMarkerPush {
   0%,
@@ -1811,7 +1856,13 @@
   }
 
   .skills__title-ink {
-    clip-path: inset(-12% -4% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        -4%
+        -12%
+        0
+      );
   }
 
   .skills__marker-tip {

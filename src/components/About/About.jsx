@@ -74,7 +74,15 @@ function About() {
               <span
                 className="about__marker-tip about__marker-tip--main"
                 aria-hidden="true"
-              />
+              >
+                <span className="about__pencil">
+                  <span className="about__pencil-eraser" />
+                  <span className="about__pencil-metal" />
+                  <span className="about__pencil-body" />
+                  <span className="about__pencil-wood" />
+                  <span className="about__pencil-lead" />
+                </span>
+              </span>
             </span>
 
             <span className="about__title-row about__title-row--script">
@@ -85,7 +93,15 @@ function About() {
               <span
                 className="about__marker-tip about__marker-tip--script"
                 aria-hidden="true"
-              />
+              >
+                <span className="about__pencil">
+                  <span className="about__pencil-eraser" />
+                  <span className="about__pencil-metal" />
+                  <span className="about__pencil-body" />
+                  <span className="about__pencil-wood" />
+                  <span className="about__pencil-lead" />
+                </span>
+              </span>
             </span>
           </h2>
         </div>

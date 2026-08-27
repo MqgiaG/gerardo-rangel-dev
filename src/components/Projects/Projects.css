@@ -124,6 +124,16 @@
   align-items: flex-start;
 }
 
+.projects__heading-main,
+.projects__heading-script {
+  position: relative;
+
+  display: block;
+
+  width: fit-content;
+  max-width: 100%;
+}
+
 .projects__heading-main {
   color: var(--color-white);
 
@@ -137,12 +147,6 @@
 }
 
 .projects__heading-script {
-  position: relative;
-
-  display: block;
-
-  width: fit-content;
-
   margin-top: 8px;
 
   color: var(--color-pink);
@@ -156,7 +160,305 @@
   letter-spacing: -0.04em;
 
   transform: rotate(-1deg);
+  transform-origin: left center;
 }
+
+/* =========================
+   TEXT REVEAL
+========================= */
+
+.projects__heading-ink {
+  display: inline-block;
+
+  max-width: 100%;
+
+  clip-path:
+    inset(
+      -12%
+      100%
+      -12%
+      0
+    );
+
+  will-change: clip-path;
+}
+
+/* =========================
+   TITLE PENCIL
+========================= */
+
+.projects__marker-tip {
+  position: absolute;
+  z-index: 5;
+
+  left: 0;
+  top: 55%;
+
+  width: 34px;
+  height: 11px;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transform:
+    translate(
+      7px,
+      -50%
+    )
+    rotate(-24deg);
+
+  transform-origin: left center;
+
+  filter:
+    drop-shadow(
+      1px
+      1px
+      0
+      rgba(8, 8, 8, 0.7)
+    );
+
+  will-change:
+    left,
+    opacity,
+    transform;
+}
+
+.projects__marker-tip--main {
+  top: 42%;
+}
+
+.projects__marker-tip--script {
+  top: 47%;
+}
+
+/* =========================
+   PENCIL
+========================= */
+
+.projects__pencil {
+  position: relative;
+
+  width: 34px;
+  height: 11px;
+
+  display: block;
+
+  transform: scaleX(-1);
+
+  transform-origin: center;
+}
+
+/* GOMA */
+
+.projects__pencil-eraser {
+  position: absolute;
+  z-index: 2;
+
+  left: 0;
+  top: 1px;
+
+  width: 7px;
+  height: 9px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ff74bb,
+      var(--color-pink)
+    );
+
+  border:
+    1px solid
+    #080808;
+
+  border-radius:
+    4px
+    1px
+    1px
+    4px;
+}
+
+/* METAL */
+
+.projects__pencil-metal {
+  position: absolute;
+  z-index: 3;
+
+  left: 6px;
+  top: 1px;
+
+  width: 5px;
+  height: 9px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #d8d8dc 0 1px,
+      #8d8e95 1px 2px
+    );
+
+  border-top:
+    1px solid
+    #080808;
+
+  border-bottom:
+    1px solid
+    #080808;
+}
+
+/* CUERPO */
+
+.projects__pencil-body {
+  position: absolute;
+  z-index: 1;
+
+  left: 10px;
+  top: 1px;
+
+  width: 17px;
+  height: 9px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffe66b 0%,
+      #ffd43b 34%,
+      #e8ad22 35%,
+      #e8ad22 62%,
+      #ffd43b 63%,
+      #ffe66b 100%
+    );
+
+  border-top:
+    1px solid
+    #080808;
+
+  border-bottom:
+    1px solid
+    #080808;
+}
+
+.projects__pencil-body::after {
+  content: '';
+
+  position: absolute;
+
+  left: 3px;
+  top: 1px;
+
+  width: 10px;
+  height: 1px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.42);
+}
+
+/* MADERA */
+
+.projects__pencil-wood {
+  position: absolute;
+  z-index: 1;
+
+  right: 2px;
+  top: 1px;
+
+  width: 8px;
+  height: 9px;
+
+  background:
+    #e7b77f;
+
+  border-top:
+    1px solid
+    #080808;
+
+  border-bottom:
+    1px solid
+    #080808;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+}
+
+/* PUNTA */
+
+.projects__pencil-lead {
+  position: absolute;
+  z-index: 4;
+
+  right: -1px;
+  top: 4px;
+
+  width: 4px;
+  height: 4px;
+
+  background:
+    #1a1a1d;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+}
+
+/* =========================
+   TITLE DRAW
+========================= */
+
+.projects__heading--drawn
+.projects__heading-main
+.projects__heading-ink {
+  animation:
+    projectsInkReveal
+    1.05s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    forwards;
+}
+
+.projects__heading--drawn
+.projects__heading-main
+.projects__marker-tip {
+  animation:
+    projectsMarkerMain
+    1.05s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    forwards;
+}
+
+.projects__heading--drawn
+.projects__heading-script
+.projects__heading-ink {
+  animation:
+    projectsInkReveal
+    1.25s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    1.02s
+    forwards;
+}
+
+.projects__heading--drawn
+.projects__heading-script
+.projects__marker-tip {
+  animation:
+    projectsMarkerScript
+    1.25s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    1.02s
+    forwards;
+}
+
+/* =========================
+   TITLE UNDERLINE
+========================= */
 
 .projects__heading-script::after {
   content: "";
@@ -166,7 +468,7 @@
   left: 2%;
   bottom: -6px;
 
-  width: 96%;
+  width: 0;
   height: 7px;
 
   border-top:
@@ -175,9 +477,22 @@
 
   border-radius: 50%;
 
-  opacity: 0.82;
+  opacity: 0;
 
-  transform: rotate(-1deg);
+  transform:
+    rotate(-1deg);
+
+  transform-origin: left center;
+}
+
+.projects__heading--drawn
+.projects__heading-script::after {
+  animation:
+    projectsTitleUnderline
+    520ms
+    cubic-bezier(0.2, 0.75, 0.25, 1)
+    2.18s
+    forwards;
 }
 
 /* =========================
@@ -1455,7 +1770,242 @@ span:nth-child(3) {
 }
 
 /* =========================
-   ANIMATIONS
+   TITLE ANIMATIONS
+========================= */
+
+@keyframes projectsInkReveal {
+  0% {
+    clip-path:
+      inset(
+        -12%
+        100%
+        -12%
+        0
+      );
+  }
+
+  18% {
+    clip-path:
+      inset(
+        -12%
+        82%
+        -12%
+        0
+      );
+  }
+
+  42% {
+    clip-path:
+      inset(
+        -12%
+        57%
+        -12%
+        0
+      );
+  }
+
+  68% {
+    clip-path:
+      inset(
+        -12%
+        31%
+        -12%
+        0
+      );
+  }
+
+  100% {
+    clip-path:
+      inset(
+        -12%
+        -4%
+        -12%
+        0
+      );
+  }
+}
+
+/* =========================
+   PENCIL MAIN
+========================= */
+
+@keyframes projectsMarkerMain {
+  0% {
+    left: 0%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-24deg);
+  }
+
+  7% {
+    opacity: 1;
+  }
+
+  22% {
+    transform:
+      translate(
+        7px,
+        -56%
+      )
+      rotate(-20deg);
+  }
+
+  43% {
+    transform:
+      translate(
+        7px,
+        -45%
+      )
+      rotate(-27deg);
+  }
+
+  64% {
+    transform:
+      translate(
+        7px,
+        -55%
+      )
+      rotate(-21deg);
+  }
+
+  83% {
+    transform:
+      translate(
+        7px,
+        -47%
+      )
+      rotate(-26deg);
+  }
+
+  94% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-23deg);
+  }
+}
+
+/* =========================
+   PENCIL SCRIPT
+========================= */
+
+@keyframes projectsMarkerScript {
+  0% {
+    left: 0%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-24deg);
+  }
+
+  7% {
+    opacity: 1;
+  }
+
+  20% {
+    transform:
+      translate(
+        7px,
+        -58%
+      )
+      rotate(-19deg);
+  }
+
+  38% {
+    transform:
+      translate(
+        7px,
+        -44%
+      )
+      rotate(-28deg);
+  }
+
+  57% {
+    transform:
+      translate(
+        7px,
+        -56%
+      )
+      rotate(-20deg);
+  }
+
+  76% {
+    transform:
+      translate(
+        7px,
+        -46%
+      )
+      rotate(-27deg);
+  }
+
+  91% {
+    transform:
+      translate(
+        7px,
+        -54%
+      )
+      rotate(-22deg);
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-24deg);
+  }
+}
+
+@keyframes projectsTitleUnderline {
+  0% {
+    width: 0;
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  100% {
+    width: 96%;
+
+    opacity: 0.82;
+  }
+}
+
+/* =========================
+   OTHER ANIMATIONS
 ========================= */
 
 @keyframes projectDoodleFloat {
@@ -1632,8 +2182,6 @@ span:nth-child(3) {
       scale(0.5556);
   }
 
-  /* FOOTER */
-
   .projects__footer {
     width: 100%;
 
@@ -1758,10 +2306,6 @@ span:nth-child(3) {
     font-size: 14px;
   }
 
-  /* =========================
-     BUTTONS MOBILE
-  ========================= */
-
   .project__links {
     gap: 15px;
 
@@ -1804,10 +2348,6 @@ span:nth-child(3) {
   .project__github-arrow {
     font-size: 15px;
   }
-
-  /* =========================
-     FOOTER MOBILE
-  ========================= */
 
   .projects__footer {
     padding:
@@ -1898,9 +2438,32 @@ span:nth-child(3) {
   .project__github-badge,
   .projects__footer,
   .projects__footer-stamp,
-  .projects__footer-star {
+  .projects__footer-star,
+  .projects__heading-ink,
+  .projects__marker-tip,
+  .projects__heading-script::after {
     transition: none;
 
     animation: none;
+  }
+
+  .projects__heading-ink {
+    clip-path:
+      inset(
+        -12%
+        -4%
+        -12%
+        0
+      );
+  }
+
+  .projects__marker-tip {
+    display: none;
+  }
+
+  .projects__heading-script::after {
+    width: 96%;
+
+    opacity: 0.82;
   }
 }

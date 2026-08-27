@@ -151,7 +151,7 @@
 }
 
 /* =========================
-   TITLE / HAND-DRAWN REVEAL
+   TITLE
 ========================= */
 
 .about__title {
@@ -190,11 +190,6 @@
   transform-origin: left center;
 }
 
-/*
-  El texto no aparece letra por letra.
-  Se descubre como una sola pincelada de izquierda a derecha.
-*/
-
 .about__title-ink {
   display: inline-block;
 
@@ -206,29 +201,39 @@
 }
 
 /* =========================
-   MARKER TIP
+   TITLE PENCIL
 ========================= */
 
 .about__marker-tip {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
 
   left: 0;
+  top: 55%;
 
-  width: 19px;
-  height: 8px;
+  width: 34px;
+  height: 11px;
 
   pointer-events: none;
 
-  border-radius:
-    65% 35%
-    60% 40%;
-
   opacity: 0;
 
-  filter: blur(0.2px);
+  transform:
+    translate(
+      7px,
+      -50%
+    )
+    rotate(-24deg);
 
-  transform-origin: center;
+  transform-origin: left center;
+
+  filter:
+    drop-shadow(
+      1px
+      1px
+      0
+      rgba(8, 8, 8, 0.7)
+    );
 
   will-change:
     left,
@@ -236,54 +241,202 @@
     transform;
 }
 
-.about__marker-tip::after {
+.about__marker-tip--main {
+  top: 42%;
+}
+
+.about__marker-tip--script {
+  top: 47%;
+}
+
+/* =========================
+   PENCIL DRAWING
+========================= */
+
+.about__pencil {
+  position: relative;
+
+  width: 34px;
+  height: 11px;
+
+  display: block;
+
+  /* punta mirando al lado contrario */
+
+  transform: scaleX(-1);
+
+  transform-origin: center;
+}
+
+/* =========================
+   PENCIL ERASER
+========================= */
+
+.about__pencil-eraser {
+  position: absolute;
+  z-index: 2;
+
+  left: 0;
+  top: 1px;
+
+  width: 7px;
+  height: 9px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ff74bb,
+      var(--color-pink)
+    );
+
+  border:
+    1px solid
+    #080808;
+
+  border-radius:
+    4px
+    1px
+    1px
+    4px;
+}
+
+/* =========================
+   PENCIL METAL
+========================= */
+
+.about__pencil-metal {
+  position: absolute;
+  z-index: 3;
+
+  left: 6px;
+  top: 1px;
+
+  width: 5px;
+  height: 9px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #d8d8dc 0 1px,
+      #8d8e95 1px 2px
+    );
+
+  border-top:
+    1px solid
+    #080808;
+
+  border-bottom:
+    1px solid
+    #080808;
+}
+
+/* =========================
+   PENCIL BODY
+========================= */
+
+.about__pencil-body {
+  position: absolute;
+  z-index: 1;
+
+  left: 10px;
+  top: 1px;
+
+  width: 17px;
+  height: 9px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffe66b 0%,
+      #ffd43b 34%,
+      #e8ad22 35%,
+      #e8ad22 62%,
+      #ffd43b 63%,
+      #ffe66b 100%
+    );
+
+  border-top:
+    1px solid
+    #080808;
+
+  border-bottom:
+    1px solid
+    #080808;
+}
+
+.about__pencil-body::after {
   content: '';
 
   position: absolute;
 
-  right: -4px;
-  top: 50%;
+  left: 3px;
+  top: 1px;
 
-  width: 7px;
+  width: 10px;
+  height: 1px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.42);
+}
+
+/* =========================
+   PENCIL WOOD
+========================= */
+
+.about__pencil-wood {
+  position: absolute;
+  z-index: 1;
+
+  right: 2px;
+  top: 1px;
+
+  width: 8px;
+  height: 9px;
+
+  background:
+    #e7b77f;
+
+  border-top:
+    1px solid
+    #080808;
+
+  border-bottom:
+    1px solid
+    #080808;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+}
+
+/* =========================
+   PENCIL LEAD
+========================= */
+
+.about__pencil-lead {
+  position: absolute;
+  z-index: 4;
+
+  right: -1px;
+  top: 4px;
+
+  width: 4px;
   height: 4px;
 
-  border-radius: 50%;
-
-  background: inherit;
-
-  opacity: 0.35;
-
-  transform:
-    translateY(-50%)
-    rotate(-12deg);
-}
-
-.about__marker-tip--main {
-  top: 68%;
-
   background:
-    var(--color-white);
+    #1a1a1d;
 
-  box-shadow:
-    0 0 10px rgba(245, 245, 242, 0.16);
-
-  transform:
-    translate(-45%, -50%)
-    rotate(-14deg);
-}
-
-.about__marker-tip--script {
-  top: 72%;
-
-  background:
-    var(--color-pink);
-
-  box-shadow:
-    0 0 12px rgba(255, 45, 149, 0.28);
-
-  transform:
-    translate(-45%, -50%)
-    rotate(-17deg);
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
 }
 
 /* =========================
@@ -294,7 +447,8 @@
 .about__title-row--main
 .about__title-ink {
   animation:
-    aboutInkReveal 1.05s
+    aboutInkReveal
+    1.05s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     forwards;
 }
@@ -303,7 +457,8 @@
 .about__title-row--main
 .about__marker-tip {
   animation:
-    aboutMarkerMain 1.05s
+    aboutMarkerMain
+    1.05s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     forwards;
 }
@@ -312,7 +467,8 @@
 .about__title-row--script
 .about__title-ink {
   animation:
-    aboutInkReveal 1.25s
+    aboutInkReveal
+    1.25s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     1.02s
     forwards;
@@ -322,13 +478,16 @@
 .about__title-row--script
 .about__marker-tip {
   animation:
-    aboutMarkerScript 1.25s
+    aboutMarkerScript
+    1.25s
     cubic-bezier(0.22, 0.7, 0.25, 1)
     1.02s
     forwards;
 }
 
-/* small hand-drawn finish after the pink line */
+/* =========================
+   TITLE UNDERLINE
+========================= */
 
 .about__title-row--script::after {
   content: '';
@@ -359,7 +518,8 @@
 .about__title--drawn
 .about__title-row--script::after {
   animation:
-    aboutTitleUnderline 520ms
+    aboutTitleUnderline
+    520ms
     cubic-bezier(0.2, 0.75, 0.25, 1)
     2.18s
     forwards;
@@ -495,7 +655,8 @@
   letter-spacing: 0.04em;
 
   box-shadow:
-    4px 4px 0 rgba(255, 255, 255, 0.035);
+    4px 4px 0
+    rgba(255, 255, 255, 0.035);
 
   cursor: default;
 
@@ -507,7 +668,10 @@
     box-shadow 180ms ease;
 
   animation:
-    aboutTagFloat 3s ease-in-out infinite;
+    aboutTagFloat
+    3s
+    ease-in-out
+    infinite;
 }
 
 /* =========================
@@ -554,8 +718,6 @@
     border-color 180ms ease,
     transform 180ms ease;
 }
-
-/* MINI PINK DOT */
 
 .about__tag-icon::after {
   content: '';
@@ -629,8 +791,10 @@
   border-color: #080808;
 
   box-shadow:
-    6px 6px 0 rgba(255, 255, 255, 0.14),
-    0 0 20px rgba(255, 45, 149, 0.18);
+    6px 6px 0
+    rgba(255, 255, 255, 0.14),
+    0 0 20px
+    rgba(255, 45, 149, 0.18);
 
   transform:
     translate(-3px, -4px)
@@ -640,7 +804,8 @@
   animation-play-state: paused;
 }
 
-.about__tag:hover .about__tag-icon {
+.about__tag:hover
+.about__tag-icon {
   color: #080808;
 
   background:
@@ -654,7 +819,8 @@
     scale(1.08);
 }
 
-.about__tag:hover .about__tag-icon::after {
+.about__tag:hover
+.about__tag-icon::after {
   background: #080808;
 
   box-shadow: none;
@@ -692,7 +858,10 @@
   overflow: hidden;
 
   animation:
-    aboutQuoteGlow 3.5s ease-in-out infinite;
+    aboutQuoteGlow
+    3.5s
+    ease-in-out
+    infinite;
 
   transition:
     border-color 200ms ease,
@@ -723,7 +892,10 @@
   pointer-events: none;
 
   animation:
-    aboutQuoteShine 6s ease-in-out infinite;
+    aboutQuoteShine
+    6s
+    ease-in-out
+    infinite;
 }
 
 .about__quote:hover {
@@ -745,7 +917,10 @@
   font-weight: 700;
 
   animation:
-    aboutQuoteArrow 1.8s ease-in-out infinite;
+    aboutQuoteArrow
+    1.8s
+    ease-in-out
+    infinite;
 }
 
 .about__quote p {
@@ -806,10 +981,15 @@
     );
 
   border: 2px solid #2d2d32;
-  border-radius: 24px 18px 27px 20px;
+  border-radius:
+    24px
+    18px
+    27px
+    20px;
 
   box-shadow:
-    10px 10px 0 rgba(255, 45, 149, 0.22);
+    10px 10px 0
+    rgba(255, 45, 149, 0.22);
 
   transform: rotate(1deg);
 
@@ -824,7 +1004,8 @@
     rotate(-1deg);
 
   box-shadow:
-    15px 15px 0 rgba(255, 45, 149, 0.3);
+    15px 15px 0
+    rgba(255, 45, 149, 0.3);
 }
 
 /* =========================
@@ -902,14 +1083,20 @@
   background: var(--color-pink);
 
   border: 3px solid #080808;
-  border-radius: 30px 22px 32px 24px;
+
+  border-radius:
+    30px
+    22px
+    32px
+    24px;
 
   font-family: var(--font-heading);
   font-size: 31px;
   font-weight: 700;
 
   box-shadow:
-    7px 7px 0 rgba(255, 255, 255, 0.13);
+    7px 7px 0
+    rgba(255, 255, 255, 0.13);
 
   transform: rotate(-5deg);
 
@@ -918,19 +1105,22 @@
     box-shadow 220ms ease;
 }
 
-.about__card:hover .about__code-icon {
+.about__card:hover
+.about__code-icon {
   transform:
     rotate(2deg)
     scale(1.04);
 
   box-shadow:
-    9px 9px 0 rgba(255, 255, 255, 0.14);
+    9px 9px 0
+    rgba(255, 255, 255, 0.14);
 }
 
 .about__code-icon::after {
   content: '';
 
   position: absolute;
+
   top: -8px;
   right: -7px;
 
@@ -1047,10 +1237,14 @@
   background: #42e66c;
 
   box-shadow:
-    0 0 8px rgba(66, 230, 108, 0.75);
+    0 0 8px
+    rgba(66, 230, 108, 0.75);
 
   animation:
-    aboutStatusPulse 2s ease-in-out infinite;
+    aboutStatusPulse
+    2s
+    ease-in-out
+    infinite;
 }
 
 /* =========================
@@ -1069,7 +1263,8 @@
   top: 75px;
   right: 26px;
 
-  color: rgba(255, 255, 255, 0.18);
+  color:
+    rgba(255, 255, 255, 0.18);
 
   font-size: 18px;
 
@@ -1080,7 +1275,8 @@
   bottom: 118px;
   left: 20px;
 
-  color: rgba(255, 45, 149, 0.33);
+  color:
+    rgba(255, 45, 149, 0.33);
 
   font-size: 17px;
 }
@@ -1101,7 +1297,12 @@
   padding: 0 14px;
 
   border: 2px solid #080808;
-  border-radius: 11px 8px 12px 9px;
+
+  border-radius:
+    11px
+    8px
+    12px
+    9px;
 
   font-family: var(--font-display);
   font-size: 14px;
@@ -1110,7 +1311,8 @@
   line-height: 1;
 
   box-shadow:
-    4px 4px 0 rgba(255, 255, 255, 0.12);
+    4px 4px 0
+    rgba(255, 255, 255, 0.12);
 }
 
 .about__sticker--build {
@@ -1134,31 +1336,64 @@
 }
 
 /* =========================
-   ANIMATIONS
+   TITLE ANIMATIONS
 ========================= */
-
 
 @keyframes aboutInkReveal {
   0% {
-    clip-path: inset(-12% 100% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        100%
+        -12%
+        0
+      );
   }
 
   18% {
-    clip-path: inset(-12% 82% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        82%
+        -12%
+        0
+      );
   }
 
   42% {
-    clip-path: inset(-12% 57% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        57%
+        -12%
+        0
+      );
   }
 
   68% {
-    clip-path: inset(-12% 31% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        31%
+        -12%
+        0
+      );
   }
 
   100% {
-    clip-path: inset(-12% -4% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        -4%
+        -12%
+        0
+      );
   }
 }
+
+/* =========================
+   PENCIL ANIMATION MAIN
+========================= */
 
 @keyframes aboutMarkerMain {
   0% {
@@ -1167,34 +1402,55 @@
     opacity: 0;
 
     transform:
-      translate(-45%, -50%)
-      rotate(-14deg);
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-24deg);
   }
 
-  8% {
-    opacity: 0.92;
+  7% {
+    opacity: 1;
   }
 
-  24% {
+  22% {
     transform:
-      translate(-45%, -54%)
-      rotate(-10deg);
+      translate(
+        7px,
+        -56%
+      )
+      rotate(-20deg);
   }
 
-  48% {
+  43% {
     transform:
-      translate(-45%, -46%)
-      rotate(-17deg);
+      translate(
+        7px,
+        -45%
+      )
+      rotate(-27deg);
   }
 
-  72% {
+  64% {
     transform:
-      translate(-45%, -53%)
-      rotate(-12deg);
+      translate(
+        7px,
+        -55%
+      )
+      rotate(-21deg);
   }
 
-  92% {
-    opacity: 0.92;
+  83% {
+    transform:
+      translate(
+        7px,
+        -47%
+      )
+      rotate(-26deg);
+  }
+
+  94% {
+    opacity: 1;
   }
 
   100% {
@@ -1203,10 +1459,17 @@
     opacity: 0;
 
     transform:
-      translate(-45%, -48%)
-      rotate(-15deg);
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-23deg);
   }
 }
+
+/* =========================
+   PENCIL ANIMATION SCRIPT
+========================= */
 
 @keyframes aboutMarkerScript {
   0% {
@@ -1215,39 +1478,63 @@
     opacity: 0;
 
     transform:
-      translate(-45%, -50%)
-      rotate(-17deg);
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-24deg);
   }
 
-  8% {
+  7% {
     opacity: 1;
   }
 
-  22% {
+  20% {
     transform:
-      translate(-45%, -55%)
-      rotate(-12deg);
+      translate(
+        7px,
+        -58%
+      )
+      rotate(-19deg);
   }
 
-  44% {
+  38% {
     transform:
-      translate(-45%, -45%)
+      translate(
+        7px,
+        -44%
+      )
+      rotate(-28deg);
+  }
+
+  57% {
+    transform:
+      translate(
+        7px,
+        -56%
+      )
       rotate(-20deg);
   }
 
-  66% {
+  76% {
     transform:
-      translate(-45%, -53%)
-      rotate(-14deg);
+      translate(
+        7px,
+        -46%
+      )
+      rotate(-27deg);
   }
 
-  86% {
+  91% {
     transform:
-      translate(-45%, -47%)
-      rotate(-18deg);
+      translate(
+        7px,
+        -54%
+      )
+      rotate(-22deg);
   }
 
-  93% {
+  95% {
     opacity: 1;
   }
 
@@ -1257,8 +1544,11 @@
     opacity: 0;
 
     transform:
-      translate(-45%, -50%)
-      rotate(-16deg);
+      translate(
+        7px,
+        -50%
+      )
+      rotate(-24deg);
   }
 }
 
@@ -1280,6 +1570,10 @@
   }
 }
 
+/* =========================
+   OTHER ANIMATIONS
+========================= */
+
 @keyframes aboutStatusPulse {
   0%,
   100% {
@@ -1288,7 +1582,8 @@
     transform: scale(1);
 
     box-shadow:
-      0 0 8px rgba(66, 230, 108, 0.75);
+      0 0 8px
+      rgba(66, 230, 108, 0.75);
   }
 
   50% {
@@ -1297,7 +1592,8 @@
     transform: scale(1.2);
 
     box-shadow:
-      0 0 13px rgba(66, 230, 108, 0.9);
+      0 0 13px
+      rgba(66, 230, 108, 0.9);
   }
 }
 
@@ -1316,12 +1612,14 @@
   0%,
   100% {
     box-shadow:
-      0 0 0 rgba(255, 45, 149, 0);
+      0 0 0
+      rgba(255, 45, 149, 0);
   }
 
   50% {
     box-shadow:
-      0 0 28px rgba(255, 45, 149, 0.08);
+      0 0 28px
+      rgba(255, 45, 149, 0.08);
   }
 }
 
@@ -1444,7 +1742,12 @@
   }
 
   .about__title {
-    font-size: clamp(44px, 12vw, 65px);
+    font-size:
+      clamp(
+        44px,
+        12vw,
+        65px
+      );
   }
 
   .about__text {
@@ -1485,7 +1788,8 @@
     padding: 19px;
 
     box-shadow:
-      7px 7px 0 rgba(255, 45, 149, 0.22);
+      7px 7px 0
+      rgba(255, 45, 149, 0.22);
   }
 
   .about__sticker--build {
@@ -1605,7 +1909,13 @@
   }
 
   .about__title-ink {
-    clip-path: inset(-12% -4% -12% 0);
+    clip-path:
+      inset(
+        -12%
+        -4%
+        -12%
+        0
+      );
   }
 
   .about__marker-tip {

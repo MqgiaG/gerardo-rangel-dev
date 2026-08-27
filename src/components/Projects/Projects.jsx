@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import './Projects.css'
 
 const projects = [
@@ -35,6 +36,36 @@ const projects = [
 ]
 
 function Projects() {
+  const headingRef = useRef(null)
+  const [isHeadingDrawn, setIsHeadingDrawn] = useState(false)
+
+  useEffect(() => {
+    const heading = headingRef.current
+
+    if (!heading) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeadingDrawn(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -12% 0px',
+      },
+    )
+
+    observer.observe(heading)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <section className="projects section" id="projects">
       <div className="section__container">
@@ -49,13 +80,50 @@ function Projects() {
             </span>
           </div>
 
-          <h2 className="projects__heading">
+          <h2
+            ref={headingRef}
+            className={`projects__heading${
+              isHeadingDrawn
+                ? ' projects__heading--drawn'
+                : ''
+            }`}
+          >
             <span className="projects__heading-main">
-              Ideas que llevé a
+              <span className="projects__heading-ink">
+                Ideas que llevé a
+              </span>
+
+              <span
+                className="projects__marker-tip projects__marker-tip--main"
+                aria-hidden="true"
+              >
+                <span className="projects__pencil">
+                  <span className="projects__pencil-eraser" />
+                  <span className="projects__pencil-metal" />
+                  <span className="projects__pencil-body" />
+                  <span className="projects__pencil-wood" />
+                  <span className="projects__pencil-lead" />
+                </span>
+              </span>
             </span>
 
             <span className="projects__heading-script">
-              pantalla.
+              <span className="projects__heading-ink">
+                pantalla.
+              </span>
+
+              <span
+                className="projects__marker-tip projects__marker-tip--script"
+                aria-hidden="true"
+              >
+                <span className="projects__pencil">
+                  <span className="projects__pencil-eraser" />
+                  <span className="projects__pencil-metal" />
+                  <span className="projects__pencil-body" />
+                  <span className="projects__pencil-wood" />
+                  <span className="projects__pencil-lead" />
+                </span>
+              </span>
             </span>
           </h2>
 
