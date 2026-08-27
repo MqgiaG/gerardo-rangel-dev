@@ -32,7 +32,7 @@ function Footer() {
         <div className="footer__brand">
           <a
             className="footer__signature"
-            href="#hero"
+            href="#home"
             aria-label="Volver al inicio"
           >
             Mqgia
@@ -92,7 +92,7 @@ function Footer() {
 
           <a
             className="footer__restart"
-            href="#hero"
+            href="#home"
             aria-label="Volver al inicio del portfolio"
           >
             <span
