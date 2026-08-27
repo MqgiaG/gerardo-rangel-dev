@@ -1,6 +1,37 @@
+import { useEffect, useRef, useState } from 'react'
 import './About.css'
 
 function About() {
+  const titleRef = useRef(null)
+  const [isTitleDrawn, setIsTitleDrawn] = useState(false)
+
+  useEffect(() => {
+    const title = titleRef.current
+
+    if (!title) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsTitleDrawn(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -12% 0px',
+      },
+    )
+
+    observer.observe(title)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <section className="about" id="about">
       <div className="about__decor" aria-hidden="true">
@@ -27,9 +58,35 @@ function About() {
             </span>
           </div>
 
-          <h2 className="about__title">
-            Del diseño a la lógica.
-            <span>Construyo todo el camino.</span>
+          <h2
+            ref={titleRef}
+            className={`about__title${
+              isTitleDrawn
+                ? ' about__title--drawn'
+                : ''
+            }`}
+          >
+            <span className="about__title-row about__title-row--main">
+              <span className="about__title-ink">
+                Del diseño a la lógica.
+              </span>
+
+              <span
+                className="about__marker-tip about__marker-tip--main"
+                aria-hidden="true"
+              />
+            </span>
+
+            <span className="about__title-row about__title-row--script">
+              <span className="about__title-ink">
+                Construyo todo el camino.
+              </span>
+
+              <span
+                className="about__marker-tip about__marker-tip--script"
+                aria-hidden="true"
+              />
+            </span>
           </h2>
         </div>
 

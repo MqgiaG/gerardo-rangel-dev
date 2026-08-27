@@ -150,6 +150,10 @@
   color: #85858b;
 }
 
+/* =========================
+   TITLE / HAND-DRAWN REVEAL
+========================= */
+
 .about__title {
   max-width: 850px;
 
@@ -165,9 +169,16 @@
   letter-spacing: -0.055em;
 }
 
-.about__title span {
-  display: block;
+.about__title-row {
+  position: relative;
 
+  width: fit-content;
+  max-width: 100%;
+
+  display: block;
+}
+
+.about__title-row--script {
   margin-top: 8px;
 
   color: var(--color-pink);
@@ -176,6 +187,182 @@
   font-weight: 700;
 
   transform: rotate(-1deg);
+  transform-origin: left center;
+}
+
+/*
+  El texto no aparece letra por letra.
+  Se descubre como una sola pincelada de izquierda a derecha.
+*/
+
+.about__title-ink {
+  display: inline-block;
+
+  max-width: 100%;
+
+  clip-path: inset(-12% 100% -12% 0);
+
+  will-change: clip-path;
+}
+
+/* =========================
+   MARKER TIP
+========================= */
+
+.about__marker-tip {
+  position: absolute;
+  z-index: 3;
+
+  left: 0;
+
+  width: 19px;
+  height: 8px;
+
+  pointer-events: none;
+
+  border-radius:
+    65% 35%
+    60% 40%;
+
+  opacity: 0;
+
+  filter: blur(0.2px);
+
+  transform-origin: center;
+
+  will-change:
+    left,
+    opacity,
+    transform;
+}
+
+.about__marker-tip::after {
+  content: '';
+
+  position: absolute;
+
+  right: -4px;
+  top: 50%;
+
+  width: 7px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: inherit;
+
+  opacity: 0.35;
+
+  transform:
+    translateY(-50%)
+    rotate(-12deg);
+}
+
+.about__marker-tip--main {
+  top: 68%;
+
+  background:
+    var(--color-white);
+
+  box-shadow:
+    0 0 10px rgba(245, 245, 242, 0.16);
+
+  transform:
+    translate(-45%, -50%)
+    rotate(-14deg);
+}
+
+.about__marker-tip--script {
+  top: 72%;
+
+  background:
+    var(--color-pink);
+
+  box-shadow:
+    0 0 12px rgba(255, 45, 149, 0.28);
+
+  transform:
+    translate(-45%, -50%)
+    rotate(-17deg);
+}
+
+/* =========================
+   DRAW TRIGGER
+========================= */
+
+.about__title--drawn
+.about__title-row--main
+.about__title-ink {
+  animation:
+    aboutInkReveal 1.05s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    forwards;
+}
+
+.about__title--drawn
+.about__title-row--main
+.about__marker-tip {
+  animation:
+    aboutMarkerMain 1.05s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    forwards;
+}
+
+.about__title--drawn
+.about__title-row--script
+.about__title-ink {
+  animation:
+    aboutInkReveal 1.25s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    1.02s
+    forwards;
+}
+
+.about__title--drawn
+.about__title-row--script
+.about__marker-tip {
+  animation:
+    aboutMarkerScript 1.25s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    1.02s
+    forwards;
+}
+
+/* small hand-drawn finish after the pink line */
+
+.about__title-row--script::after {
+  content: '';
+
+  position: absolute;
+
+  left: 4%;
+  bottom: -7px;
+
+  width: 0;
+  height: 7px;
+
+  border-top:
+    3px solid
+    var(--color-lilac);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  transform:
+    rotate(-1.5deg)
+    skewX(-10deg);
+
+  transform-origin: left center;
+}
+
+.about__title--drawn
+.about__title-row--script::after {
+  animation:
+    aboutTitleUnderline 520ms
+    cubic-bezier(0.2, 0.75, 0.25, 1)
+    2.18s
+    forwards;
 }
 
 /* =========================
@@ -950,6 +1137,149 @@
    ANIMATIONS
 ========================= */
 
+
+@keyframes aboutInkReveal {
+  0% {
+    clip-path: inset(-12% 100% -12% 0);
+  }
+
+  18% {
+    clip-path: inset(-12% 82% -12% 0);
+  }
+
+  42% {
+    clip-path: inset(-12% 57% -12% 0);
+  }
+
+  68% {
+    clip-path: inset(-12% 31% -12% 0);
+  }
+
+  100% {
+    clip-path: inset(-12% -4% -12% 0);
+  }
+}
+
+@keyframes aboutMarkerMain {
+  0% {
+    left: 0%;
+
+    opacity: 0;
+
+    transform:
+      translate(-45%, -50%)
+      rotate(-14deg);
+  }
+
+  8% {
+    opacity: 0.92;
+  }
+
+  24% {
+    transform:
+      translate(-45%, -54%)
+      rotate(-10deg);
+  }
+
+  48% {
+    transform:
+      translate(-45%, -46%)
+      rotate(-17deg);
+  }
+
+  72% {
+    transform:
+      translate(-45%, -53%)
+      rotate(-12deg);
+  }
+
+  92% {
+    opacity: 0.92;
+  }
+
+  100% {
+    left: 100%;
+
+    opacity: 0;
+
+    transform:
+      translate(-45%, -48%)
+      rotate(-15deg);
+  }
+}
+
+@keyframes aboutMarkerScript {
+  0% {
+    left: 0%;
+
+    opacity: 0;
+
+    transform:
+      translate(-45%, -50%)
+      rotate(-17deg);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  22% {
+    transform:
+      translate(-45%, -55%)
+      rotate(-12deg);
+  }
+
+  44% {
+    transform:
+      translate(-45%, -45%)
+      rotate(-20deg);
+  }
+
+  66% {
+    transform:
+      translate(-45%, -53%)
+      rotate(-14deg);
+  }
+
+  86% {
+    transform:
+      translate(-45%, -47%)
+      rotate(-18deg);
+  }
+
+  93% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+
+    opacity: 0;
+
+    transform:
+      translate(-45%, -50%)
+      rotate(-16deg);
+  }
+}
+
+@keyframes aboutTitleUnderline {
+  0% {
+    width: 0;
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  100% {
+    width: 92%;
+
+    opacity: 0.78;
+  }
+}
+
 @keyframes aboutStatusPulse {
   0%,
   100% {
@@ -1257,7 +1587,9 @@
   .about__tag-icon,
   .about__tag-icon::after,
   .about__quote,
-  .about__quote p {
+  .about__quote p,
+  .about__title-ink,
+  .about__marker-tip {
     transition: none;
   }
 
@@ -1265,7 +1597,24 @@
   .about__tag,
   .about__quote,
   .about__quote::before,
-  .about__quote-arrow {
+  .about__quote-arrow,
+  .about__title-ink,
+  .about__marker-tip,
+  .about__title-row--script::after {
     animation: none;
+  }
+
+  .about__title-ink {
+    clip-path: inset(-12% -4% -12% 0);
+  }
+
+  .about__marker-tip {
+    display: none;
+  }
+
+  .about__title-row--script::after {
+    width: 92%;
+
+    opacity: 0.78;
   }
 }

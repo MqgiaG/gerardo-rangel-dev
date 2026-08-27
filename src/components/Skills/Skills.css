@@ -177,11 +177,16 @@
   letter-spacing: -0.055em;
 }
 
-.skills__title span {
-  display: block;
+.skills__title-row {
+  position: relative;
 
   width: fit-content;
+  max-width: 100%;
 
+  display: block;
+}
+
+.skills__title-row--script {
   margin-top: 8px;
 
   color: var(--color-pink);
@@ -190,6 +195,324 @@
   font-weight: 700;
 
   transform: rotate(-1deg);
+  transform-origin: left center;
+}
+
+/*
+  El texto se revela como una sola pincelada.
+  El lápiz acompaña el borde del trazo.
+*/
+
+.skills__title-ink {
+  display: inline-block;
+
+  max-width: 100%;
+
+  clip-path: inset(-12% 100% -12% 0);
+
+  will-change: clip-path;
+}
+
+/* =========================
+   TITLE PENCIL
+========================= */
+
+.skills__marker-tip {
+  position: absolute;
+  z-index: 5;
+
+  left: 0;
+  top: 55%;
+
+  width: 70px;
+  height: 22px;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transform:
+    translate(
+      calc(-100% - 17px),
+      -50%
+    )
+    rotate(-24deg);
+
+  transform-origin: right center;
+
+  filter:
+    drop-shadow(
+      3px
+      4px
+      0
+      rgba(8, 8, 8, 0.7)
+    );
+
+  will-change:
+    left,
+    opacity,
+    transform;
+}
+
+.skills__marker-tip--main {
+  top: 54%;
+}
+
+.skills__marker-tip--script {
+  top: 59%;
+}
+
+/* =========================
+   PENCIL DRAWING
+========================= */
+
+.skills__pencil {
+  position: relative;
+
+  width: 70px;
+  height: 22px;
+
+  display: block;
+}
+
+/* pink eraser */
+
+.skills__pencil-eraser {
+  position: absolute;
+  z-index: 2;
+
+  left: 0;
+  top: 2px;
+
+  width: 13px;
+  height: 18px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ff74bb,
+      var(--color-pink)
+    );
+
+  border:
+    2px solid
+    #080808;
+
+  border-radius:
+    7px
+    2px
+    2px
+    7px;
+}
+
+/* metallic band */
+
+.skills__pencil-metal {
+  position: absolute;
+  z-index: 3;
+
+  left: 11px;
+  top: 2px;
+
+  width: 10px;
+  height: 18px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #d8d8dc 0 2px,
+      #8d8e95 2px 4px
+    );
+
+  border-top:
+    2px solid
+    #080808;
+
+  border-bottom:
+    2px solid
+    #080808;
+}
+
+/* yellow pencil body */
+
+.skills__pencil-body {
+  position: absolute;
+  z-index: 1;
+
+  left: 19px;
+  top: 2px;
+
+  width: 38px;
+  height: 18px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffe66b 0%,
+      #ffd43b 34%,
+      #e8ad22 35%,
+      #e8ad22 62%,
+      #ffd43b 63%,
+      #ffe66b 100%
+    );
+
+  border-top:
+    2px solid
+    #080808;
+
+  border-bottom:
+    2px solid
+    #080808;
+}
+
+/* wood */
+
+.skills__pencil-wood {
+  position: absolute;
+  z-index: 1;
+
+  right: 3px;
+  top: 2px;
+
+  width: 17px;
+  height: 18px;
+
+  background: #e7b77f;
+
+  border-top:
+    2px solid
+    #080808;
+
+  border-bottom:
+    2px solid
+    #080808;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+}
+
+/* graphite */
+
+.skills__pencil-lead {
+  position: absolute;
+  z-index: 4;
+
+  right: -1px;
+  top: 7px;
+
+  width: 8px;
+  height: 8px;
+
+  background: #1a1a1d;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+}
+
+/* tiny cartoon highlight */
+
+.skills__pencil-body::after {
+  content: '';
+
+  position: absolute;
+
+  left: 5px;
+  top: 2px;
+
+  width: 24px;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.45);
+}
+
+/* =========================
+   TITLE DRAW TRIGGER
+========================= */
+
+.skills__title--drawn
+.skills__title-row--main
+.skills__title-ink {
+  animation:
+    skillsInkReveal 1.05s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    forwards;
+}
+
+.skills__title--drawn
+.skills__title-row--main
+.skills__marker-tip {
+  animation:
+    skillsMarkerMain 1.05s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    forwards;
+}
+
+.skills__title--drawn
+.skills__title-row--script
+.skills__title-ink {
+  animation:
+    skillsInkReveal 1.25s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    1.02s
+    forwards;
+}
+
+.skills__title--drawn
+.skills__title-row--script
+.skills__marker-tip {
+  animation:
+    skillsMarkerScript 1.25s
+    cubic-bezier(0.22, 0.7, 0.25, 1)
+    1.02s
+    forwards;
+}
+
+/* little hand-drawn finish */
+
+.skills__title-row--script::after {
+  content: '';
+
+  position: absolute;
+
+  left: 4%;
+  bottom: -7px;
+
+  width: 0;
+  height: 7px;
+
+  border-top:
+    3px solid
+    var(--color-lilac);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  transform:
+    rotate(-1.5deg)
+    skewX(-10deg);
+
+  transform-origin: left center;
+}
+
+.skills__title--drawn
+.skills__title-row--script::after {
+  animation:
+    skillsTitleUnderline 520ms
+    cubic-bezier(0.2, 0.75, 0.25, 1)
+    2.18s
+    forwards;
 }
 
 .skills__description {
@@ -955,6 +1278,203 @@
    ANIMATIONS
 ========================= */
 
+/* =========================
+   TITLE DRAW ANIMATIONS
+========================= */
+
+@keyframes skillsInkReveal {
+  0% {
+    clip-path: inset(-12% 100% -12% 0);
+  }
+
+  18% {
+    clip-path: inset(-12% 82% -12% 0);
+  }
+
+  42% {
+    clip-path: inset(-12% 57% -12% 0);
+  }
+
+  68% {
+    clip-path: inset(-12% 31% -12% 0);
+  }
+
+  100% {
+    clip-path: inset(-12% -4% -12% 0);
+  }
+}
+
+@keyframes skillsMarkerMain {
+  0% {
+    left: 0%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -50%
+      )
+      rotate(-24deg);
+  }
+
+  7% {
+    opacity: 1;
+  }
+
+  22% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -56%
+      )
+      rotate(-20deg);
+  }
+
+  43% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -45%
+      )
+      rotate(-27deg);
+  }
+
+  64% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -55%
+      )
+      rotate(-21deg);
+  }
+
+  83% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -47%
+      )
+      rotate(-26deg);
+  }
+
+  94% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -50%
+      )
+      rotate(-23deg);
+  }
+}
+
+@keyframes skillsMarkerScript {
+  0% {
+    left: 0%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -50%
+      )
+      rotate(-24deg);
+  }
+
+  7% {
+    opacity: 1;
+  }
+
+  20% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -58%
+      )
+      rotate(-19deg);
+  }
+
+  38% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -44%
+      )
+      rotate(-28deg);
+  }
+
+  57% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -56%
+      )
+      rotate(-20deg);
+  }
+
+  76% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -46%
+      )
+      rotate(-27deg);
+  }
+
+  91% {
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -54%
+      )
+      rotate(-22deg);
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-100% - 17px),
+        -50%
+      )
+      rotate(-24deg);
+  }
+}
+
+@keyframes skillsTitleUnderline {
+  0% {
+    width: 0;
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  100% {
+    width: 92%;
+
+    opacity: 0.78;
+  }
+}
+
 @keyframes skillStickerFloat {
   0%,
   100% {
@@ -1273,7 +1793,9 @@
   .skills__name,
   .skills__spark,
   .skills__footer,
-  .skills__footer-text {
+  .skills__footer-text,
+  .skills__title-ink,
+  .skills__marker-tip {
     transition: none;
   }
 
@@ -1281,7 +1803,24 @@
   .skills__background-star,
   .skills__group-marker,
   .skills__footer-doodle,
-  .skills__footer-star {
+  .skills__footer-star,
+  .skills__title-ink,
+  .skills__marker-tip,
+  .skills__title-row--script::after {
     animation: none;
+  }
+
+  .skills__title-ink {
+    clip-path: inset(-12% -4% -12% 0);
+  }
+
+  .skills__marker-tip {
+    display: none;
+  }
+
+  .skills__title-row--script::after {
+    width: 92%;
+
+    opacity: 0.78;
   }
 }

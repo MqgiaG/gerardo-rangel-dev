@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import './Skills.css'
 
 const skillGroups = [
@@ -94,6 +95,36 @@ const skillGroups = [
 ]
 
 function Skills() {
+  const titleRef = useRef(null)
+  const [isTitleDrawn, setIsTitleDrawn] = useState(false)
+
+  useEffect(() => {
+    const title = titleRef.current
+
+    if (!title) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsTitleDrawn(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -12% 0px',
+      },
+    )
+
+    observer.observe(title)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <section className="skills" id="skills">
       <div
@@ -125,9 +156,51 @@ function Skills() {
             </span>
           </div>
 
-          <h2 className="skills__title">
-            Mi stack.
-            <span>Lo que uso para construir.</span>
+          <h2
+            ref={titleRef}
+            className={`skills__title${
+              isTitleDrawn
+                ? ' skills__title--drawn'
+                : ''
+            }`}
+          >
+            <span className="skills__title-row skills__title-row--main">
+              <span className="skills__title-ink">
+                Mi stack.
+              </span>
+
+              <span
+                className="skills__marker-tip skills__marker-tip--main"
+                aria-hidden="true"
+              >
+                <span className="skills__pencil">
+                  <span className="skills__pencil-eraser" />
+                  <span className="skills__pencil-metal" />
+                  <span className="skills__pencil-body" />
+                  <span className="skills__pencil-wood" />
+                  <span className="skills__pencil-lead" />
+                </span>
+              </span>
+            </span>
+
+            <span className="skills__title-row skills__title-row--script">
+              <span className="skills__title-ink">
+                Lo que uso para construir.
+              </span>
+
+              <span
+                className="skills__marker-tip skills__marker-tip--script"
+                aria-hidden="true"
+              >
+                <span className="skills__pencil">
+                  <span className="skills__pencil-eraser" />
+                  <span className="skills__pencil-metal" />
+                  <span className="skills__pencil-body" />
+                  <span className="skills__pencil-wood" />
+                  <span className="skills__pencil-lead" />
+                </span>
+              </span>
+            </span>
           </h2>
 
           <p className="skills__description">
