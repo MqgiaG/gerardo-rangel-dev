@@ -3,6 +3,6 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/mqgiebhw/public_html/
     - cd /home/mqgiebhw/repositories/gerardo-rangel-dev
-    - /usr/local/bin/npm install
-    - /usr/local/bin/npm run build
+    - /opt/alt/alt-nodejs20/root/usr/bin/npm install
+    - /opt/alt/alt-nodejs20/root/usr/bin/npm run build
     - /bin/cp -R dist/* $DEPLOYPATH
