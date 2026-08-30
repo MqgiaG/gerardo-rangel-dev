@@ -1139,19 +1139,23 @@
 }
 
 /* =========================
-   MOBILE
+   TABLET + MOBILE
+   IPAD PRO / IPAD AIR /
+   IPAD MINI / IPHONE
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .sidebar {
     top: auto;
     bottom: 0;
+    left: 0;
 
     width: 100%;
     height: 76px;
 
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
     padding:
       0 16px;
