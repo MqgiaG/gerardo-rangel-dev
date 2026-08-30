@@ -850,7 +850,7 @@ span:nth-child(3) {
 }
 
 /* =========================
-   TRIPLE ESPRESSO
+   DESKTOP LIVE PREVIEW
 ========================= */
 
 .project__browser-content--desktop {
@@ -957,7 +957,7 @@ span:nth-child(3) {
 .project__top {
   display: flex;
 
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 
   gap: 11px;
@@ -1023,24 +1023,116 @@ span:nth-child(3) {
 }
 
 /* =========================
-   PROJECT TYPE
+   PROJECT STACK
 ========================= */
 
-.project__type {
-  margin: 0;
+.project__stack {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  flex: 1 1 260px;
+
+  gap: 7px;
+}
+
+.project__stack-item {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 27px;
+
+  padding:
+    5px
+    10px;
 
   color:
     var(--color-lilac);
 
+  background:
+    rgba(183, 140, 255, 0.07);
+
+  border:
+    1px solid
+    rgba(183, 140, 255, 0.23);
+
+  border-radius:
+    8px
+    6px
+    9px
+    7px;
+
   font-family:
     var(--font-heading);
 
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 700;
 
-  letter-spacing: 0.1em;
+  line-height: 1;
+
+  letter-spacing: 0.075em;
 
   text-transform: uppercase;
+
+  white-space: nowrap;
+
+  box-shadow:
+    2px 2px 0
+    rgba(255, 45, 149, 0.05);
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.project__stack-item:nth-child(even) {
+  transform:
+    rotate(0.7deg);
+}
+
+.project__stack-item:nth-child(odd) {
+  transform:
+    rotate(-0.45deg);
+}
+
+.project:hover
+.project__stack-item {
+  color:
+    var(--color-white);
+
+  background:
+    rgba(255, 45, 149, 0.08);
+
+  border-color:
+    rgba(255, 45, 149, 0.33);
+}
+
+.project__stack-item:hover {
+  color:
+    #080808;
+
+  background:
+    var(--color-lilac);
+
+  border-color:
+    #080808;
+
+  box-shadow:
+    2px 3px 0
+    rgba(255, 45, 149, 0.35);
+
+  transform:
+    translateY(-2px)
+    rotate(0deg)
+    scale(1.04);
 }
 
 /* =========================
@@ -2353,8 +2445,22 @@ span:nth-child(3) {
     font-size: 12px;
   }
 
-  .project__type {
-    font-size: 10px;
+  .project__stack {
+    flex-basis: 100%;
+
+    gap: 6px;
+  }
+
+  .project__stack-item {
+    min-height: 25px;
+
+    padding:
+      5px
+      8px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.06em;
   }
 
   .project__description {
@@ -2487,6 +2593,7 @@ span:nth-child(3) {
   .project__browser,
   .project__link,
   .project__check,
+  .project__stack-item,
   .project__doodle,
   .project__browser-star,
   .project__github-arrow,

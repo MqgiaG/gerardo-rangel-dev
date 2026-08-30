@@ -3,7 +3,15 @@ import './Projects.css'
 
 const projects = [
   {
-    type: 'React · Vite · CSS',
+    stack: [
+      'React',
+      'Vite',
+      'JavaScript',
+      'CSS',
+      'Git',
+      'GitHub',
+      'GitHub Pages',
+    ],
     title: 'VIVANCOFFEE',
     description:
       'Experiencia web desarrollada para una cafetería real, con diseño responsivo, menú interactivo, animaciones y una identidad visual enfocada en la marca.',
@@ -13,18 +21,40 @@ const projects = [
     githubUrl: 'https://github.com/MqgiaG/RVIVANCOFFEE',
   },
   {
-    type: 'HTML · CSS · BEM',
-    title: 'Triple Espresso',
+    stack: [
+      'React',
+      'Vite',
+      'JavaScript',
+      'CSS',
+      'Responsive Design',
+      'Git',
+      'GitHub',
+      'GitHub Pages',
+    ],
+    title: 'DANNO',
     description:
-      'Landing page para una cafetería de especialidad, desarrollada con HTML y CSS utilizando metodología BEM, diseño responsivo y una composición visual limpia.',
+      'Sitio web profesional desarrollado para un fotógrafo, con portafolio interactivo, servicios, animaciones, diseño responsivo y sistema de reservación con contacto directo por WhatsApp.',
     previewType: 'live',
-    preview: 'https://mqgiag.github.io/web_project_coffeeshop_es/',
+    preview: 'https://mqgiag.github.io/Danno/',
     previewMode: 'desktop',
-    liveUrl: 'https://mqgiag.github.io/web_project_coffeeshop_es/',
-    githubUrl: 'https://github.com/MqgiaG/web_project_coffeeshop_es',
+    liveUrl: 'https://mqgiag.github.io/Danno/',
+    githubUrl: 'https://github.com/MqgiaG/Danno',
   },
   {
-    type: 'React · Node.js · Express · MongoDB',
+    stack: [
+      'React',
+      'Vite',
+      'JavaScript',
+      'Node.js',
+      'Express',
+      'MongoDB',
+      'Mongoose',
+      'REST API',
+      'JWT',
+      'CORS',
+      'Git',
+      'GitHub',
+    ],
     title: 'Around The U.S.',
     description:
       'Aplicación Full Stack con autenticación, perfiles de usuario, creación de tarjetas y sistema de likes, conectando frontend, API REST y base de datos.',
@@ -210,9 +240,19 @@ function Projects() {
                     ✔
                   </span>
 
-                  <p className="project__type">
-                    {project.type}
-                  </p>
+                  <div
+                    className="project__stack"
+                    aria-label={`Tecnologías utilizadas en ${project.title}`}
+                  >
+                    {project.stack.map((technology) => (
+                      <span
+                        className="project__stack-item"
+                        key={technology}
+                      >
+                        {technology}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <h3 className="project__title">
