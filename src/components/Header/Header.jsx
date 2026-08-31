@@ -492,7 +492,7 @@ function Header() {
         {/* LINKEDIN */}
 
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/gerardo-antonio-rangel-gonzalez-056057377/"
           target="_blank"
           rel="noreferrer"
           aria-label="LinkedIn"
