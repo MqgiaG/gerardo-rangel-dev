@@ -35,9 +35,9 @@ const projects = [
     description:
       'Sitio web profesional desarrollado para un fotógrafo, con portafolio interactivo, servicios, animaciones, diseño responsivo y sistema de reservación con contacto directo por WhatsApp.',
     previewType: 'live',
-    preview: 'https://mqgiag.github.io/Danno/',
+    preview: 'https://danno.mqgiadev.com',
     previewMode: 'desktop',
-    liveUrl: 'https://mqgiag.github.io/Danno/',
+    liveUrl: 'https://danno.mqgiadev.com',
     githubUrl: 'https://github.com/MqgiaG/Danno',
   },
   {
