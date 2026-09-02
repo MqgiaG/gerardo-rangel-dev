@@ -20,8 +20,16 @@ const skillGroups = [
         icon: '/icons/skills/JavaScript.svg',
       },
       {
+        name: 'TypeScript',
+        icon: '/icons/skills/typescript.svg',
+      },
+      {
         name: 'React',
         icon: '/icons/skills/React.svg',
+      },
+      {
+        name: 'Vite',
+        icon: '/icons/skills/vite.svg',
       },
       {
         name: 'Tailwind CSS',
@@ -52,6 +60,22 @@ const skillGroups = [
         icon: '/icons/skills/mongodb.svg',
       },
       {
+        name: 'MongoDB Atlas',
+        icon: '/icons/skills/mongodb.svg',
+      },
+      {
+        name: 'Mongoose',
+        icon: '/icons/skills/mongoose.svg',
+      },
+      {
+        name: 'REST API',
+        icon: '/icons/skills/api.png',
+      },
+      {
+        name: 'JWT',
+        icon: '/icons/skills/jwt.svg',
+      },
+      {
         name: 'SQL',
         icon: '/icons/skills/SQL.svg',
       },
@@ -78,6 +102,19 @@ const skillGroups = [
       {
         name: 'VS Code',
         icon: '/icons/skills/vscode.svg',
+      },
+      {
+        name: 'Vercel',
+        icon: '/icons/skills/vercel.svg',
+        lightIcon: true,
+      },
+      {
+        name: 'Namecheap',
+        icon: '/icons/skills/namecheap.svg',
+      },
+      {
+        name: 'cPanel',
+        icon: '/icons/skills/cpanel.svg',
       },
     ],
   },

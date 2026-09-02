@@ -690,7 +690,7 @@
 .skills__group--frontend
 .skills__grid {
   grid-template-columns:
-    repeat(6, minmax(0, 1fr));
+    repeat(4, minmax(0, 1fr));
 }
 
 .skills__group--backend
