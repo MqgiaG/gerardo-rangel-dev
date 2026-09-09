@@ -51,6 +51,10 @@ const skillGroups = [
         icon: '/icons/skills/Node.svg',
       },
       {
+        name: 'Python',
+        icon: '/icons/skills/python.svg',
+      },
+      {
         name: 'Express',
         icon: '/icons/skills/express.svg',
         lightIcon: true,
