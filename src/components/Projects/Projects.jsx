@@ -9,6 +9,7 @@ const projects = [
       'JavaScript',
       'React Router',
       'Node.js',
+      'Python',
       'Express',
       'MongoDB',
       'Mongoose',
