@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react'
 import './Projects.css'
 
@@ -33,6 +34,31 @@ const projects = [
     previewMode: 'desktop',
     liveUrl: 'https://sdcreations.mqgiadev.com',
     githubUrl: 'https://github.com/MqgiaG/SD-CREATIONS',
+  },
+  {
+    stack: [
+      'React',
+      'Vite',
+      'JavaScript',
+      'CSS3',
+      'Framer Motion',
+      'Lucide React',
+      'Responsive Design',
+      'Git',
+      'GitHub',
+      'GitHub Actions',
+      'FTPS',
+      'Namecheap',
+      'cPanel',
+    ],
+    title: 'NUTRI VISIÓN SYNERGY',
+    description:
+      'Sitio web profesional desarrollado para un proyecto real de nutrición y entrenamiento, con diseño responsivo, animaciones interactivas, presentación de servicios y modalidades de consulta, galería de resultados de pacientes, testimonios, preguntas frecuentes y contacto directo por WhatsApp. Incluye un flujo de integración y despliegue continuo con GitHub Actions que compila la aplicación y publica automáticamente los cambios en Namecheap mediante FTPS.',
+    previewType: 'live',
+    preview: 'https://nvs.mqgiadev.com',
+    previewMode: 'desktop',
+    liveUrl: 'https://nvs.mqgiadev.com',
+    githubUrl: 'https://github.com/MqgiaG/nutri-vision',
   },
   {
     stack: [

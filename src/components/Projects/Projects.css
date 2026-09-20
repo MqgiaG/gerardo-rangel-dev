@@ -29,8 +29,8 @@
 
 .projects::after {
   content:
-    "BUILT ·\A"
-    "SHIPPED ·\A"
+    "BUILT Â·\A"
+    "SHIPPED Â·\A"
     "LEARNED";
 
   position: absolute;
@@ -1194,7 +1194,7 @@ span:nth-child(3) {
 }
 
 .project__link--primary::before {
-  content: "✦";
+  content: "âœ¦";
 
   position: absolute;
 
@@ -2244,17 +2244,17 @@ span:nth-child(3) {
 }
 
 /* =========================================================
-   IPADS — VIVANCOFFEE FIX
-   601px → 1100px
+   IPADS â€” VIVANCOFFEE FIX
+   601px â†’ 1100px
 ========================================================= */
 
 @media (min-width: 601px) and (max-width: 1100px) {
   /*
     IMPORTANTE:
-    El featured venía con align-items:center
+    El featured venÃ­a con align-items:center
     desde desktop.
 
-    Aquí lo estiramos de verdad.
+    AquÃ­ lo estiramos de verdad.
   */
 
   .project:first-child {
@@ -2308,14 +2308,14 @@ span:nth-child(3) {
   }
 
   /*
-    Antes en tablet usábamos:
+    Antes en tablet usÃ¡bamos:
     180% + scale(.5556)
 
-    Aquí usamos:
+    AquÃ­ usamos:
     150% + scale(.6667)
 
-    Así el contenido de Vivancoffee
-    se ve bastante más grande.
+    AsÃ­ el contenido de Vivancoffee
+    se ve bastante mÃ¡s grande.
   */
 
   .project:first-child
@@ -2960,5 +2960,144 @@ span:nth-child(3) {
   .projects__heading-script::after {
     width: 96%;
     opacity: 0.82;
+  }
+}
+/* ==========================================================
+   NVS Â· SEGUNDO PROYECTO, DEBAJO DE SD CREATIONS
+   Ajustes puntuales: se conserva la identidad del portafolio
+   y el diseÃ±o de las otras tarjetas.
+========================================================== */
+
+/* Su gran cantidad de herramientas no debe desplazar el tÃ­tulo
+   ni crear espacios innecesarios dentro de esta tarjeta. */
+.projects__list > .project:nth-child(2) .project__top {
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.projects__list > .project:nth-child(2) .project__stack {
+  flex: 1 1 0;
+  gap: 6px;
+}
+
+.projects__list > .project:nth-child(2) .project__stack-item {
+  min-height: 24px;
+  padding: 5px 8px;
+  font-size: 8px;
+  line-height: 1.15;
+  letter-spacing: 0.035em;
+}
+
+.projects__list > .project:nth-child(2) .project__title {
+  font-size: clamp(29px, 2.5vw, 41px);
+  line-height: 1.08;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+.projects__list > .project:nth-child(2) .project__description {
+  font-size: 14px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+/* Vista viva con proporciÃ³n de escritorio: NVS tiene un hero
+   horizontal y no debe mostrarse como una pantalla vertical. */
+.projects__list > .project:nth-child(2) .project__browser-content--desktop {
+  aspect-ratio: 16 / 10;
+  background: #071b29;
+}
+
+.projects__list > .project:nth-child(2) .project__browser-content--desktop iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+/* iPad Mini / iPad Pro: preview panorÃ¡mica y chips legibles. */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .projects__list > .project:nth-child(2) .project__stack {
+    flex-basis: 100%;
+  }
+
+  .projects__list > .project:nth-child(2) .project__title {
+    font-size: clamp(34px, 5vw, 46px);
+  }
+
+  .projects__list > .project:nth-child(2) .project__browser-content--desktop {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .projects__list > .project:nth-child(2) .project__browser-content--desktop iframe {
+    width: 150%;
+    height: 150%;
+    transform: scale(0.666667);
+  }
+}
+
+/* iPhone: evita la regla general 9/16 de los proyectos
+   secundarios; la portada de NVS debe verse horizontal. */
+@media (max-width: 600px) {
+  .projects__list > .project:nth-child(2) .project__preview {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .projects__list > .project:nth-child(2) .project__browser-content--desktop {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #071b29;
+  }
+
+  .projects__list > .project:nth-child(2) .project__browser-content--desktop iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: top left;
+  }
+
+  .projects__list > .project:nth-child(2) .project__stack {
+    flex-basis: 100%;
+    gap: 5px;
+  }
+
+  .projects__list > .project:nth-child(2) .project__stack-item {
+    min-height: 23px;
+    padding: 4px 7px;
+    font-size: 7px;
+    line-height: 1.15;
+  }
+
+  .projects__list > .project:nth-child(2) .project__title {
+    font-size: clamp(29px, 8.1vw, 38px);
+    line-height: 1.08;
+  }
+
+  .projects__list > .project:nth-child(2) .project__description {
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 380px) {
+  .projects__list > .project:nth-child(2) .project__preview {
+    max-width: 100%;
+  }
+
+  .projects__list > .project:nth-child(2) .project__stack-item {
+    font-size: 6.8px;
+    padding: 4px 6px;
   }
 }
