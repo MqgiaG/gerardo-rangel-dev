@@ -46,7 +46,7 @@ function Contact() {
 
           <div className="contact__section-label">
             <span className="contact__section-number">
-              04
+              05
             </span>
 
             <span className="contact__section-name">

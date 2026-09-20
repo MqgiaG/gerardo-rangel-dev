@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react'
 import './Projects.css'
 
@@ -166,7 +165,7 @@ function Projects() {
         <header className="projects__header">
           <div className="projects__section-label">
             <span className="projects__section-number">
-              03
+              04
             </span>
 
             <span className="projects__section-name">

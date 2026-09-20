@@ -16,6 +16,7 @@ function Header() {
       'home',
       'about',
       'skills',
+      'certificate',
       'projects',
       'contact',
     ]
@@ -29,9 +30,6 @@ function Header() {
       const documentHeight =
         document.documentElement.scrollHeight
 
-      /* CONTACTO:
-         si estamos prácticamente al final de la página,
-         contacto siempre será la sección activa */
       const isAtBottom =
         scrollTop + windowHeight >=
         documentHeight - 10
@@ -41,7 +39,6 @@ function Header() {
         return
       }
 
-      /* Punto de referencia dentro de la pantalla */
       const detectionPoint =
         windowHeight * 0.32
 
@@ -107,12 +104,6 @@ function Header() {
 
     if (!section) return
 
-    /*
-      Guardamos el scroll-behavior actual.
-      Esto evita que un "scroll-behavior: smooth"
-      global haga que pase por todas las secciones.
-    */
-
     const html =
       document.documentElement
 
@@ -132,11 +123,6 @@ function Header() {
     })
 
     setActiveSection(sectionId)
-
-    /*
-      Actualizamos el #hash sin provocar
-      otro movimiento del navegador.
-    */
 
     window.history.replaceState(
       null,
@@ -334,6 +320,53 @@ function Header() {
 
           <span className="sidebar__label">
             Tecnologías
+          </span>
+        </a>
+
+        {/* CERTIFICADO */}
+
+        <a
+          href="#certificate"
+          className={`sidebar__link ${
+            activeSection === 'certificate'
+              ? 'sidebar__link--active'
+              : ''
+          }`}
+          onClick={(event) =>
+            goToSection(
+              event,
+              'certificate',
+            )
+          }
+        >
+          <span
+            className="sidebar__icon"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect
+                x="4"
+                y="4"
+                width="16"
+                height="13"
+                rx="2.5"
+              />
+
+              <path d="M8 8h8" />
+              <path d="M8 12h5" />
+              <path d="m14.5 17 1 3 1.5-1 1.5 1 1-3" />
+            </svg>
+          </span>
+
+          <span className="sidebar__label">
+            Certificado
           </span>
         </a>
 
